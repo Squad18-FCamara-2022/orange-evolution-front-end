@@ -1,12 +1,10 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import * as yup from 'yup';
+import { useAuthContext } from '../../contexts';
 import './styles.css';
-import { setLocalItem } from '../../utils/localStorage';
-import api from '../../services/api';
-import { warning } from '@remix-run/router';
 
 const errorMessages = {
   email: 'Digite um e-mail válido',
@@ -31,32 +29,14 @@ function Login() {
     resolver: yupResolver(validationSchema),
   });
 
-  const [form, setForm] = useState({
-    email: '',
-    password: '',
-  });
-  const handleFormChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  };
-
-  const navigate = useNavigate();
-  const navigateHome = () => {
-    navigate('/home');
-  };
-
+  const { login } = useAuthContext();
   const [warning, setWarning] = useState();
   const onSubmit = async (data, e) => {
     e.preventDefault();
-    console.log(form);
+    console.log(data);
 
     try {
-      const response = await api.post('/signin', {
-        ...form,
-      });
-      setLocalItem('token', response.token);
-      setLocalItem('userId', response.user.id);
-      setLocalItem('userName', response.user.name);
-      navigateHome();
+      await login(data);
     } catch (error) {
       setWarning(error.response.data);
     }
@@ -72,8 +52,6 @@ function Login() {
             name="email"
             placeholder="Digite seu e-mail"
             {...register('email')}
-            value={form.email}
-            onChange={(e) => handleFormChange(e)}
           />
           <p>{errors.email?.message}</p>
           <input
@@ -81,8 +59,6 @@ function Login() {
             name="password"
             placeholder="Digite sua senha"
             {...register('password')}
-            value={form.password}
-            onChange={(e) => handleFormChange(e)}
           />
           <p>{errors.password?.message}</p>
           <p>{warning}</p>

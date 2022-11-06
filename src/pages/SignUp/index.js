@@ -1,9 +1,9 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import * as yup from 'yup';
-import api from '../../services/api';
+import { useAuthContext } from '../../contexts';
 import './styles.css';
 
 const errorMessages = {
@@ -31,7 +31,7 @@ const validationSchema = yup.object().shape({
     .oneOf([yup.ref('password'), null], errorMessages.confirmPassword),
 });
 
-function Register() {
+function SignUp() {
   const {
     register,
     handleSubmit,
@@ -40,53 +40,32 @@ function Register() {
     resolver: yupResolver(validationSchema),
   });
 
-  const [form, setForm] = useState({
-    name: '',
-    email: '',
-    password: '',
-    confirmPassword: '',
-  });
-  const handleFormChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  };
-
-  const navigate = useNavigate();
-  const navigateLogin = () => {
-    navigate('/');
-  };
-
+  const { signUp } = useAuthContext();
   const [warning, setWarning] = useState();
   const onSubmit = async (data, e) => {
     e.preventDefault();
-    console.log(form);
+    console.log(data);
 
     try {
-      await api.post('/signup', {
-        ...form,
-      });
+      await signUp(data);
       setWarning(
         'Usuário cadastrado com sucesso! Você será redirecionado para a página de login.'
       );
-      setTimeout(() => {
-        navigateLogin();
-      }, 2000);
     } catch (error) {
       setWarning(error.response.data);
     }
   };
 
   return (
-    <div className="register-container">
+    <div className="signup-container">
       <h1>Cadastre-se</h1>
-      <div className="register-form">
+      <div className="signup-form">
         <form onSubmit={handleSubmit(onSubmit)}>
           <input
             type="text"
             name="name"
             placeholder="Digite seu nome"
             {...register('name')}
-            value={form.nome}
-            onChange={(e) => handleFormChange(e)}
           />
           <p>{errors.name?.message}</p>
           <input
@@ -94,8 +73,6 @@ function Register() {
             name="email"
             placeholder="Digite seu e-mail"
             {...register('email')}
-            value={form.email}
-            onChange={(e) => handleFormChange(e)}
           />
           <p>{errors.email?.message}</p>
           <input
@@ -103,8 +80,6 @@ function Register() {
             name="password"
             placeholder="Digite sua senha"
             {...register('password')}
-            value={form.password}
-            onChange={(e) => handleFormChange(e)}
           />
           <p>{errors.password?.message}</p>
           <input
@@ -112,8 +87,6 @@ function Register() {
             name="confirmPassword"
             placeholder="Repita sua senha"
             {...register('confirmPassword')}
-            value={form.confirmPassword}
-            onChange={(e) => handleFormChange(e)}
           />
           <p>{errors.confirmPassword?.message}</p>
           <p>{warning}</p>
@@ -130,4 +103,4 @@ function Register() {
   );
 }
 
-export default Register;
+export default SignUp;
