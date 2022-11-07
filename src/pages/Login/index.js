@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import * as yup from 'yup';
-import { useAuthContext } from '../../contexts';
+import { useAuthContext } from '../../contexts/AuthenticationContext';
 import './styles.css';
 
 const errorMessages = {

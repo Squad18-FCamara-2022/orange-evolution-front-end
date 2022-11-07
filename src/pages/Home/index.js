@@ -4,16 +4,19 @@ import './styles.css';
 
 const releases = [
   {
+    id: 1,
     date: '24/10/2022',
     message:
       'Olá estudantes, a trilha de UX/UI Designer foi atualizada com novos conteúdos.',
   },
   {
+    id: 2,
     date: '30/10/2022',
     message:
       'Olá estudantes, a trilha de Desenvolvimento Full Stack foi atualizada com novos conteúdos.',
   },
   {
+    id: 3,
     date: '04/11/2022',
     message:
       'Olá estudantes, a trilha de Quality Assurance (QA) foi atualizada com novos conteúdos.',
@@ -28,7 +31,7 @@ function Home() {
         <div className="main-releases">
           {releases.map((item) => {
             return (
-              <div className="release-item">
+              <div className="release-item" key={item.id}>
                 <p>{item.date}</p>
                 <p>{item.message}</p>
               </div>

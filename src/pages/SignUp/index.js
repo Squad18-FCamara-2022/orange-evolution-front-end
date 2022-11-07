@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import * as yup from 'yup';
-import { useAuthContext } from '../../contexts';
+import { useAuthContext } from '../../contexts/AuthenticationContext';
 import './styles.css';
 
 const errorMessages = {
@@ -44,15 +44,13 @@ function SignUp() {
   const [warning, setWarning] = useState();
   const onSubmit = async (data, e) => {
     e.preventDefault();
-    console.log(data);
+
+    const { name, email, password, confirmPassword } = data;
 
     try {
-      await signUp(data);
-      setWarning(
-        'Usuário cadastrado com sucesso! Você será redirecionado para a página de login.'
-      );
+      await signUp({ name, email, password, confirmPassword });
     } catch (error) {
-      setWarning(error.response.data);
+      setWarning(error.data.message);
     }
   };
 

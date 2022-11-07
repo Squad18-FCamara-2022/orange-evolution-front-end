@@ -9,9 +9,10 @@ export function AuthenticationProvider({ children }) {
   const [user, setUser] = useState();
   const navigate = useNavigate();
 
-  const login = async (data) => {
+  const login = async ({ email, password }) => {
     const response = await api.post('/signin', {
-      ...data,
+      email,
+      password,
     });
 
     const { token, user } = response.data;
@@ -21,9 +22,12 @@ export function AuthenticationProvider({ children }) {
     navigate('/home');
   };
 
-  const signUp = async (data) => {
+  const signUp = async ({ name, email, password, confirmPassword }) => {
     const response = await api.post('/signup', {
-      ...data,
+      name,
+      email,
+      password,
+      confirmPassword,
     });
 
     const { token, user } = response.data;
