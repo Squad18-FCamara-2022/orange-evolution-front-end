@@ -1,16 +1,23 @@
-import './styles.css';
-import { Link } from 'react-router-dom';
-import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { Link } from 'react-router-dom';
 import * as yup from 'yup';
+import { useAuthContext } from '../../contexts/AuthenticationContext';
+import './styles.css';
 
 const errorMessages = {
-  required: 'Campo obrigatório',
+  email: 'Digite um e-mail válido',
+  password: 'A senha deve ter entre 4 e 10 caracteres',
 };
 
 const validationSchema = yup.object().shape({
-  email: yup.string().email().required(errorMessages.required),
-  password: yup.string().min(4).max(10).required(),
+  email: yup.string().email(errorMessages.email).required(errorMessages.email),
+  password: yup
+    .string()
+    .min(4, errorMessages.password)
+    .max(10, errorMessages.password)
+    .required(errorMessages.password),
 });
 
 function Login() {
@@ -22,8 +29,19 @@ function Login() {
     resolver: yupResolver(validationSchema),
   });
 
-  const onSubmit = (data) => {
-    console.log(data);
+  const { login } = useAuthContext();
+  const [warning, setWarning] = useState();
+  const onSubmit = async (data, e) => {
+    e.preventDefault();
+
+    const { email, password } = data;
+
+    try {
+      await login({ email, password });
+    } catch (error) {
+      setWarning(error.message);
+      console.log(error);
+    }
   };
 
   return (
@@ -45,6 +63,7 @@ function Login() {
             {...register('password')}
           />
           <p>{errors.password?.message}</p>
+          <p>{warning}</p>
           <button type="submit">Entrar</button>
         </form>
       </div>

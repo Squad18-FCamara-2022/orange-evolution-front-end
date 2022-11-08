@@ -1,34 +1,37 @@
-import './styles.css';
-import { Link } from 'react-router-dom';
-import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { Link } from 'react-router-dom';
 import * as yup from 'yup';
+import { useAuthContext } from '../../contexts/AuthenticationContext';
+import './styles.css';
 
 const errorMessages = {
-  required: 'Campo obrigatório',
+  name: 'Nome obrigatório',
   email: 'Digite um e-mail válido',
   password: 'A senha deve ter entre 4 e 10 caracteres',
   confirmPassword: 'Senhas não conferem',
 };
 
 const validationSchema = yup.object().shape({
-  name: yup.string().trim().required(errorMessages.required),
-  email: yup
+  name: yup
     .string()
-    .email(errorMessages.email)
-    .required(errorMessages.required),
+    .trim()
+    .min(4, errorMessages.name)
+    .required(errorMessages.name),
+  email: yup.string().email(errorMessages.email).required(errorMessages.email),
   password: yup
     .string()
     .trim()
     .min(4, errorMessages.password)
     .max(10, errorMessages.password)
-    .required(),
+    .required(errorMessages.password),
   confirmPassword: yup
     .string()
     .oneOf([yup.ref('password'), null], errorMessages.confirmPassword),
 });
 
-function Register() {
+function SignUp() {
   const {
     register,
     handleSubmit,
@@ -37,14 +40,25 @@ function Register() {
     resolver: yupResolver(validationSchema),
   });
 
-  const onSubmit = (data) => {
-    console.log(data);
+  const { signUp } = useAuthContext();
+  const [warning, setWarning] = useState();
+  const onSubmit = async (data, e) => {
+    e.preventDefault();
+
+    const { name, email, password, confirmPassword } = data;
+
+    try {
+      await signUp({ name, email, password, confirmPassword });
+    } catch (error) {
+      setWarning(error.message);
+      console.log(error);
+    }
   };
 
   return (
-    <div className="register-container">
+    <div className="signup-container">
       <h1>Cadastre-se</h1>
-      <div className="register-form">
+      <div className="signup-form">
         <form onSubmit={handleSubmit(onSubmit)}>
           <input
             type="text"
@@ -52,7 +66,7 @@ function Register() {
             placeholder="Digite seu nome"
             {...register('name')}
           />
-          <p>{errors.email?.message}</p>
+          <p>{errors.name?.message}</p>
           <input
             type="text"
             name="email"
@@ -74,7 +88,8 @@ function Register() {
             {...register('confirmPassword')}
           />
           <p>{errors.confirmPassword?.message}</p>
-          <button type="submit">Entrar</button>
+          <p>{warning}</p>
+          <button type="submit">Enviar</button>
         </form>
       </div>
       <p className="login-route">
@@ -87,4 +102,4 @@ function Register() {
   );
 }
 
-export default Register;
+export default SignUp;
