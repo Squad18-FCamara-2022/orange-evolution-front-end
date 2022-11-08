@@ -1,11 +1,12 @@
 import { createContext, useContext, useState } from 'react';
-import api from '../services/api';
 import { useNavigate } from 'react-router-dom';
+import api from '../services/api';
+import { getLocalItem, setLocalItem } from '../utils/localStorage';
 
 const AuthenticationContext = createContext({});
 
 export function AuthenticationProvider({ children }) {
-  const [token, setToken] = useState();
+  const [token, setToken] = useState(getLocalItem('token'));
   const [user, setUser] = useState();
   const navigate = useNavigate();
 
@@ -18,6 +19,10 @@ export function AuthenticationProvider({ children }) {
     const { token, user } = response.data;
     setToken(token);
     setUser(user);
+
+    setLocalItem('token', token);
+    setLocalItem('userId', user.id);
+    setLocalItem('userName', user.name);
 
     navigate('/home');
   };

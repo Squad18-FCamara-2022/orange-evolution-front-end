@@ -33,10 +33,11 @@ function Login() {
   const [warning, setWarning] = useState();
   const onSubmit = async (data, e) => {
     e.preventDefault();
-    console.log(data);
+
+    const { email, password } = data;
 
     try {
-      await login(data);
+      await login({ email, password });
     } catch (error) {
       setWarning(error.response.data);
     }
