@@ -10,21 +10,31 @@ export function AuthenticationProvider({ children }) {
   const [user, setUser] = useState();
   const navigate = useNavigate();
 
-  const login = async ({ email, password }) => {
-    const response = await api.post('/signin', {
-      email,
-      password,
-    });
-
+  const setAuthInfos = (response) => {
     const { token, user } = response.data;
+
     setToken(token);
     setUser(user);
-
     setLocalItem('token', token);
     setLocalItem('userId', user.id);
     setLocalItem('userName', user.name);
+    setLocalItem('role', user.role);
 
-    navigate('/home');
+    setUser({
+      name: 'Paula',
+      role: 'admin',
+      id: '2',
+    });
+
+    user.role === 'user' ? navigate('/home') : navigate('/admin');
+  };
+
+  const login = async ({ email, password }) => {
+    const response = await api.post('/login', {
+      email,
+      password,
+    });
+    setAuthInfos(response);
   };
 
   const signUp = async ({ name, email, password, confirmPassword }) => {
@@ -34,12 +44,7 @@ export function AuthenticationProvider({ children }) {
       password,
       confirmPassword,
     });
-
-    const { token, user } = response.data;
-    setToken(token);
-    setUser(user);
-
-    navigate('/home');
+    setAuthInfos(response);
   };
 
   return (

@@ -50,7 +50,8 @@ function SignUp() {
     try {
       await signUp({ name, email, password, confirmPassword });
     } catch (error) {
-      setWarning(error.response.data);
+      setWarning(error.message);
+      console.log(error);
     }
   };
 

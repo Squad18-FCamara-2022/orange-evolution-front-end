@@ -39,7 +39,8 @@ function Login() {
     try {
       await login({ email, password });
     } catch (error) {
-      setWarning(error.response.data);
+      setWarning(error.message);
+      console.log(error);
     }
   };
 

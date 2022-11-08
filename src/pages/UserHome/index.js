@@ -28,16 +28,6 @@ function Home() {
     <div className="home-container">
       <Header />
       <div className="home-main">
-        <div className="main-releases">
-          {releases.map((item) => {
-            return (
-              <div className="release-item" key={item.id}>
-                <p>{item.date}</p>
-                <p>{item.message}</p>
-              </div>
-            );
-          })}
-        </div>
         <div className="main-tracks">
           <h2>Acesse aqui as trilhas:</h2>
           <Link to="/trilhas" state={{ track: 'devfs' }}>
@@ -49,6 +39,23 @@ function Home() {
           <Link to="/trilhas" state={{ track: 'uxui' }}>
             UX/UI Designer
           </Link>
+        </div>
+        <div className="main-discord">
+          <p>
+            Conheça nossa comunidade Orange Juice <br></br> Dúvidas, trocas de
+            experiências e projetos <br></br> Tudo no mesmo lugar!
+          </p>
+        </div>
+        <div className="main-releases">
+          <h2>Comunicados</h2>
+          {releases.map((item) => {
+            return (
+              <div className="release-item" key={item.id}>
+                <p>{item.date}</p>
+                <p>{item.message}</p>
+              </div>
+            );
+          })}
         </div>
       </div>
     </div>
