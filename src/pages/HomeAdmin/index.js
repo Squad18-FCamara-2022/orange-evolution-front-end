@@ -1,7 +1,7 @@
-import { useState } from 'react';
-import api from '../../services/api';
+// import { useState } from 'react';
+// import api from '../../services/api';
 import './styles.css';
-import { getLocalItem } from '../../utils/localStorage';
+// import { getLocalItem } from '../../utils/localStorage';
 
 function HomeAdmin() {
   // get da api para listar todas as aulas de todas as trilhas
