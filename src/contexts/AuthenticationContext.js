@@ -19,13 +19,6 @@ export function AuthenticationProvider({ children }) {
     setLocalItem('userId', user.id);
     setLocalItem('userName', user.name);
     setLocalItem('role', user.role);
-
-    setUser({
-      name: 'Paula',
-      role: 'admin',
-      id: '2',
-    });
-
     user.role === 'user' ? navigate('/home') : navigate('/admin');
   };
 
