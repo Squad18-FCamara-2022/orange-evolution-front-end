@@ -29,7 +29,6 @@ function Home() {
       <Header />
       <div className="home-main">
         <div className="main-tracks">
-          <h2>Acesse aqui as trilhas:</h2>
           <Link to="/trilhas" state={{ track: 'devfs' }}>
             Desenvolvimento Full Stack
           </Link>
