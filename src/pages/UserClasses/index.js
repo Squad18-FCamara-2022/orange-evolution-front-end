@@ -1,65 +1,76 @@
-// import { useEffect, useState } from 'react';
+// eslint-disable-next-line
+import { useEffect, useState } from 'react';
 import Header from '../../components/Header';
-// import api from '../../services/api';
+import api from '../../services/api';
 import './styles.css';
-// import { getLocalItem } from '../../utils/localStorage';
-// import { useLocation } from 'react-router-dom';
+import { getLocalItem } from '../../utils/localStorage';
+import { useLocation } from 'react-router-dom';
+// eslint-disable-next-line
+import Class from '../../components/userClass/index';
+import UserClass from '../../components/userClass/index';
 
 function UserClasses() {
   // get da api para listar todas as aulas de uma trilha e as feitas pelo usuário
   // post para api para registrar aulas feitas por aquele usuário (fazer local e mandar pra api) - ver sobre a tabela que virá
   // delete para api para excluir aulas feitas por aquele usuário (fazer local e mandar pra api) - ver sobre a tabela que virá
 
-  // const [classes, setClasses] = useState();
-  // const [localClasses, setLocalClasses] = useState();
-  // const { token, userId } = getLocalItem('token', 'userId');
-  // const location = useLocation();
-  // const { track } = location.state;
+  // eslint-disable-next-line
+  const [classes, setClasses] = useState();
+  // eslint-disable-next-line
+  const [localClasses, setLocalClasses] = useState();
+  // eslint-disable-next-line
+  const { token, userId } = getLocalItem('token', 'userId');
+  const location = useLocation();
+  // eslint-disable-next-line
+  const { trackId } = location.state;
+  // eslint-disable-next-line
+  const getClassesUser = async ({ token, userId, trackId }) => {
+    try {
+      const response = await api.get(`/getUserTrack/${userId}/${trackId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
 
-  // const getClassesUser = async ({ token, userId, trackName }) => {
-  //   try {
-  //     const { data } = await api.get(`/class/${userId}/?track=${trackName}`, {
-  //       headers: {
-  //         Authorization: `Bearer ${token}`,
-  //       },
-  //     });
-  //     setClasses(data);
-  //     setLocalClasses(data);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
+      console.log(response);
+      // como pegar e ir montando uma lista de aulas se vem dentro de categorias diferentes???
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  // eslint-disable-next-line
+  const addDoneClass = async ({ userId, classId }) => {
+    try {
+      // eslint-disable-next-line
+      const response = await api.post(`/class/${userId}/?class=${classId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      //fazer a atualização das aulas locais (decidir com lucas sobre trazer do back ou no front)
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  // eslint-disable-next-line
+  const deleteDoneClass = async ({ userId, classId }) => {
+    try {
+      // eslint-disable-next-line
+      const response = await api.delete(`/class/${userId}/?class=${classId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      //fazer a atualização das aulas locais (decidir com lucas sobre trazer do back ou no front)
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
-  // const addDoneClass = async ({ userId, classId }) => {
-  //   try {
-  //     const { data } = await api.post(`/class/${userId}/?class=${classId}`, {
-  //       headers: {
-  //         Authorization: `Bearer ${token}`,
-  //       },
-  //     });
-  //     //fazer a atualização das aulas locais (decidir com lucas sobre trazer do back ou no front)
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
-
-  // const deleteDoneClass = async ({ userId, classId }) => {
-  //   try {
-  //     const { data } = await api.delete(`/class/${userId}/?class=${classId}`, {
-  //       headers: {
-  //         Authorization: `Bearer ${token}`,
-  //       },
-  //     });
-  //     //fazer a atualização das aulas locais (decidir com lucas sobre trazer do back ou no front)
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
-
-  //passar add e delete como prop para os componentes linhas da tabela de aulas
+  // passar add e delete como prop para os componentes linhas da tabela de aulas
 
   // useEffect(() => {
-  //   getClassesUser(token, userId, track);
+  //   getClassesUser(token, userId, trackId);
   // });
 
   return (
@@ -76,7 +87,19 @@ function UserClasses() {
             <i className="bi bi-discord"></i>
           </a>
         </div>
-        <div className="user-classes-content">{/* {localClasses.map} */}</div>
+        <div className="user-classes-content">
+          <div className="user-classes-header"></div>
+          <div className="user-classes-rows">
+            {localClasses.length !== 0 &&
+              localClasses.map((userClass) => {
+                return (
+                  <div className="user-class-row" key={userClass.classId}>
+                    <UserClass classInfo={userClass} />
+                  </div>
+                );
+              })}
+          </div>
+        </div>
       </div>
     </div>
   );

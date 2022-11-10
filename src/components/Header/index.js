@@ -1,6 +1,17 @@
 import './styles.css';
+import { clearLocalStorage } from '../../utils/localStorage';
+import { useNavigate } from 'react-router-dom';
+import { useAuthContext } from '../../contexts/AuthenticationContext';
 
 function Header() {
+  const navigate = useNavigate();
+  const { setToken } = useAuthContext();
+  const logout = () => {
+    clearLocalStorage();
+    setToken(null);
+    navigate('/login');
+  };
+
   return (
     <div className="container-header">
       <h1>Logo</h1>
@@ -21,9 +32,7 @@ function Header() {
             </a>
           </li>
           <li>
-            <a href="/login">
-              <i class="bi bi-box-arrow-right"></i>
-            </a>
+            <i class="bi bi-box-arrow-right" onClick={logout}></i>
           </li>
         </ul>
       </nav>
