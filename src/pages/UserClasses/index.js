@@ -5,8 +5,6 @@ import api from '../../services/api';
 import './styles.css';
 import { getLocalItem } from '../../utils/localStorage';
 import { useLocation } from 'react-router-dom';
-// eslint-disable-next-line
-import UserClass from '../../components/UserClass/index';
 
 function UserClasses() {
   // eslint-disable-next-line
@@ -48,7 +46,8 @@ function UserClasses() {
   const setClassStatus = (classId, doneClasses) => {
     doneClasses.find((item) => item.classId === classId);
   };
-  // eslint-disable-next-linegit commit -
+
+  // eslint-disable-next-line
   const getClassesUser = async (token, trackId) => {
     try {
       const { data } = await api.get(`/getUserTrack/${trackId}`, {
