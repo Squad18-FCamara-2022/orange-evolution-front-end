@@ -1,16 +1,17 @@
 // eslint-disable-next-line
-import { useEffect, useState } from 'react';
-import Header from '../../components/Header';
-import api from '../../services/api';
-import './styles.css';
-import { getLocalItem } from '../../utils/localStorage';
-import { useLocation } from 'react-router-dom';
+import { useEffect, useState } from "react";
+import Header from "../../components/Header";
+import api from "../../services/api";
+import "./styles.css";
+import { getLocalItem } from "../../utils/localStorage";
+import { useLocation } from "react-router-dom";
+import App from "../../components/Tabela";
 
 function UserClasses() {
   // eslint-disable-next-line
   const [classes, setClasses] = useState();
   // eslint-disable-next-line
-  const token = getLocalItem('token');
+  const token = getLocalItem("token");
   const location = useLocation();
   // eslint-disable-next-line
   const { track } = location.state;
@@ -24,8 +25,8 @@ function UserClasses() {
     categories.forEach((category) => {
       category.classes.forEach((item) => {
         const status = setClassStatus(item.id, doneClasses)
-          ? 'checked'
-          : 'undone';
+          ? "checked"
+          : "undone";
         const line = {
           id: item.id,
           title: item.title,
@@ -117,6 +118,7 @@ function UserClasses() {
                 );
               })} */}
           </div>
+          <App />
         </div>
       </div>
     </div>
