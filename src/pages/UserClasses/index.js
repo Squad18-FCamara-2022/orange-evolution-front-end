@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import Header from '../../components/Header';
+// eslint-disable-next-line
 import UserClass from '../../components/UserClass';
 import api from '../../services/api';
 import { getLocalItem } from '../../utils/localStorage';
