@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import * as yup from 'yup';
 import { useAuthContext } from '../../contexts/AuthenticationContext';
 import './styles.css';
+import Logo from '../../assets/logo-orange.png';
 
 const errorMessages = {
   email: 'Digite um e-mail válido',
@@ -46,31 +47,34 @@ function Login() {
 
   return (
     <div className="login-container">
-      <h1>Faça seu login!</h1>
-      <div className="login-form">
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <input
-            type="text"
-            name="email"
-            placeholder="Digite seu e-mail"
-            {...register('email')}
-          />
-          <p>{errors.email?.message}</p>
-          <input
-            type="text"
-            name="password"
-            placeholder="Digite sua senha"
-            {...register('password')}
-          />
-          <p>{errors.password?.message}</p>
-          <p>{warning}</p>
-          <button type="submit">Entrar</button>
-        </form>
+      <header className="login-header">
+        {' '}
+        <img className="logo" src={Logo} alt="logo" />
+      </header>
+      <div className="login-main">
+        <div className="login-form">
+          <h1>LOGIN</h1>
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <label for="email">E-mail</label>
+            <input type="text" name="email" {...register('email')} />
+
+            <p>{errors.email?.message}</p>
+            <label for="password">Senha</label>
+            <input type="password" name="password" {...register('password')} />
+
+            <p>{errors.password?.message}</p>
+            <p>{warning}</p>
+            <div className="remember-password">
+              <input type="checkbox" id="remember" name="remember" />
+              <label for="remember">Lembre de mim</label>
+            </div>
+            <button type="submit">Conecte-se</button>
+          </form>
+          <p className="signup-link">
+            Novo na Orange Juice? <Link to="/cadastrar">CRIAR UMA CONTA</Link>
+          </p>
+        </div>
       </div>
-      <p className="register-route">
-        Ainda não possui uma conta?
-        <Link to="/cadastrar">Cadastre-se</Link>
-      </p>
     </div>
   );
 }
