@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import Header from '../../components/Header';
+import UserClass from '../../components/UserClass';
 import api from '../../services/api';
 import { getLocalItem } from '../../utils/localStorage';
 import './styles.css';
@@ -8,14 +9,14 @@ import './styles.css';
 function UserClasses() {
   // eslint-disable-next-line
   const [classes, setClasses] = useState();
+  const [localClasses, setLocalClasses] = useState();
   const token = getLocalItem('token');
   const location = useLocation();
   const { track } = location.state;
 
   const setClassesData = (data) => {
-    const localClasses = [];
+    const classesArray = [];
     const doneClasses = data.userTrackClasses;
-    console.log(doneClasses);
     const categories = data.trackDetails.categories;
     categories.forEach((category) => {
       category.classes.forEach((item) => {
@@ -32,18 +33,17 @@ function UserClasses() {
           category: category.name,
           status: status,
         };
-        localClasses.push(line);
+        classesArray.push(line);
       });
     });
-    console.log(localClasses);
-    setClasses(localClasses);
+    setClasses(classesArray);
+    setLocalClasses(classesArray);
   };
 
   const setClassStatus = (classId, doneClasses) => {
     return doneClasses.find((item) => item.classId === classId);
   };
 
-  // eslint-disable-next-line
   const getClassesUser = async (token, trackId) => {
     try {
       const { data } = await api.get(`/getUserTrack/${trackId}`, {
@@ -57,28 +57,29 @@ function UserClasses() {
       console.log(error);
     }
   };
-  // eslint-disable-next-line
+
   const addDoneClass = async (token, classId) => {
+    console.log(token);
     try {
-      const { data } = await api.post(`/createUserClass/${classId}`, {
+      const response = await api.post(`/createUserClass/${classId}`, {
         headers: {
           authorization: `Bearer ${token}`,
         },
       });
-      console.log(data);
+      console.log(response);
     } catch (error) {
       console.log(error);
     }
   };
-  // eslint-disable-next-line
+
   const deleteDoneClass = async (token, classId) => {
     try {
-      const { data } = await api.delete(`/deleteUserClass/${classId}`, {
+      const response = await api.delete(`/deleteUserClass/${classId}`, {
         headers: {
           authorization: `Bearer ${token}`,
         },
       });
-      console.log(data);
+      console.log(response);
     } catch (error) {
       console.log(error);
     }
@@ -106,14 +107,18 @@ function UserClasses() {
         <div className="user-classes-content">
           <div className="user-classes-header"></div>
           <div className="user-classes-rows">
-            {/* {localClasses.length !== 0 &&
+            {localClasses &&
               localClasses.map((userClass) => {
                 return (
-                  <div className="user-class-row" key={userClass.classId}>
-                    <UserClass classInfo={userClass} />
+                  <div className="user-class-row" key={userClass.id}>
+                    <UserClass
+                      classInfo={userClass}
+                      addDoneClass={addDoneClass}
+                      deleteDoneClass={deleteDoneClass}
+                    />
                   </div>
                 );
-              })} */}
+              })}
           </div>
         </div>
       </div>

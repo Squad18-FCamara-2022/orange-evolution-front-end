@@ -1,14 +1,44 @@
+import { getLocalItem } from '../../utils/localStorage';
+import { useState, useEffect } from 'react';
 import './styles.css';
 
-function UserClass(classInfo) {
-  const { name, type, author, duration, status, link } = classInfo;
+function UserClass({ classInfo, addDoneClass, deleteDoneClass }) {
+  // eslint-disable-next-line
+  const { id, title, type, author, duration, link, status } = classInfo;
+  // eslint-disable-next-line
+  const [checked, setChecked] = useState();
 
-  //add função de mudar o status
+  // eslint-disable-next-line
+  const token = getLocalItem('token');
+
+  const setStatus = () => {
+    if (status === 'checked') {
+      setChecked(true);
+    } else {
+      setChecked(false);
+    }
+  };
+
+  useEffect(() => {
+    setStatus();
+    // eslint-disable-next-line
+  }, []);
+
+  // eslint-disable-next-line
+  const handleClassStatus = async () => {
+    setChecked(!checked);
+    try {
+      await addDoneClass(token, id);
+    } catch (error) {
+      console.log(error);
+      setChecked(!checked);
+    }
+  };
 
   return (
     <div className="class-container">
       <div className="class column1">
-        <span>{name}</span>
+        <span>{title}</span>
       </div>
       <div className="class column2">
         <span>{type}</span>
@@ -19,11 +49,15 @@ function UserClass(classInfo) {
       <div className="class column4">
         <span>{duration}</span>
       </div>
-      <div className="class column5">
-        <span>{status}</span>
-      </div>
       <div className="class column6">
         <span>{link}</span>
+      </div>
+      <div className="class column5">
+        <input
+          type="checkbox"
+          defaultChecked={checked}
+          onChange={handleClassStatus}
+        ></input>
       </div>
     </div>
   );
