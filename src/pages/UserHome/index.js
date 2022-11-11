@@ -29,13 +29,13 @@ function Home() {
       <Header />
       <div className="home-main">
         <div className="main-tracks">
-          <Link to="/trilhas" state={{ track: 'devfs' }}>
+          <Link to="/trilhas" state={{ track: 'cla93d3yi0000vw8nti3frpr0' }}>
             Desenvolvimento Full Stack
           </Link>
-          <Link to="/trilhas" state={{ track: 'qa' }}>
+          <Link to="/trilhas" state={{ track: 'cla93egpn0002vw8np291twvw' }}>
             Quality Assurance (QA)
           </Link>
-          <Link to="/trilhas" state={{ track: 'uxui' }}>
+          <Link to="/trilhas" state={{ track: 'cla93f9p70004vw8nbp1vev5m' }}>
             UX/UI Designer
           </Link>
         </div>

@@ -9,11 +9,23 @@ html {
 
 body {
   font-family: 'Montserrat', sans-serif;
-  font-size: 1.6rem;
+  font-size: 2rem;
+  color: #f5f5f5;
+
+  background-image: url('../assets/background.png');
+  background-size: cover;
 }
 
 #root {
   min-height: 100vh;
+
+  --light: #f5f5f5;
+  --dark: #0c0201;
+  --grey1: #262626;
+  --orange1: #ff3200;
+  --orange2: #ff5a23;
+  --orange3: #ff7823;
+  --orange4: #ffa000;
 }
 
 a,
@@ -29,19 +41,22 @@ a:hover {
 }
 
 p {
+  font-size: 2rem;
 }
 
 h1 {
+  font-size: 4rem;
+  font-weight: bold;
 }
 
 h2 {
+  font-size: 3.2rem;
 }
 
 h3 {
+  font-size: 2.4rem;
 }
 
 h4 {
-}
-
-h5 {
+  font-size: 2rem;
 }
