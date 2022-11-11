@@ -1,21 +1,21 @@
-import { Navigate, Outlet, Route, Routes } from 'react-router-dom';
-import { AuthenticationProvider } from './contexts/AuthenticationContext';
-import HomeAdmin from './pages/HomeAdmin';
-import Login from './pages/Login';
-import SignUp from './pages/SignUp';
-import UserClasses from './pages/UserClasses';
-import Home from './pages/UserHome';
-import { getLocalItem } from './utils/localStorage';
+import { Navigate, Outlet, Route, Routes } from "react-router-dom";
+import { AuthenticationProvider } from "./contexts/AuthenticationContext";
+import HomeAdmin from "./pages/HomeAdmin";
+import Login from "./pages/Login";
+import SignUp from "./pages/SignUp";
+import UserClasses from "./pages/UserClasses";
+import Home from "./pages/UserHome";
+import { getLocalItem } from "./utils/localStorage";
 
 function ProtectedRoutes({ redirectTo }) {
-  const token = getLocalItem('token');
+  const token = getLocalItem("token");
   const loggedInUser = token;
   return loggedInUser ? <Outlet /> : <Navigate to={redirectTo} />;
 }
 
 function AdminRoute({ redirectTo }) {
-  const role = getLocalItem('role');
-  const admin = role === 'admin';
+  const role = getLocalItem("role");
+  const admin = role === "admin";
   return admin ? <Outlet /> : <Navigate to={redirectTo} />;
 }
 

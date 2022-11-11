@@ -1,15 +1,15 @@
-import { yupResolver } from '@hookform/resolvers/yup';
-import { useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
-import * as yup from 'yup';
-import { useAuthContext } from '../../contexts/AuthenticationContext';
-import './styles.css';
-import Logo from '../../assets/logo-orange.png';
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { Link } from "react-router-dom";
+import * as yup from "yup";
+import { useAuthContext } from "../../contexts/AuthenticationContext";
+import "./styles.css";
+import Logo from "../../assets/logo-orange.png";
 
 const errorMessages = {
-  email: 'Digite um e-mail válido',
-  password: 'A senha deve ter entre 4 e 10 caracteres',
+  email: "Digite um e-mail válido",
+  password: "A senha deve ter entre 4 e 10 caracteres",
 };
 
 const validationSchema = yup.object().shape({
@@ -60,7 +60,7 @@ function Login() {
               className="input"
               type="text"
               name="email"
-              {...register('email')}
+              {...register("email")}
             />
 
             <p className="error">{errors.email?.message}</p>
@@ -71,7 +71,7 @@ function Login() {
               className="input"
               type="password"
               name="password"
-              {...register('password')}
+              {...register("password")}
             />
 
             <p className="error">{errors.password?.message}</p>
