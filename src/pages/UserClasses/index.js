@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import Header from '../../components/Header';
@@ -5,6 +6,7 @@ import UserClass from '../../components/UserClass';
 import api from '../../services/api';
 import { getLocalItem } from '../../utils/localStorage';
 import './styles.css';
+import App from "../../components/Tabela";
 
 function UserClasses() {
   // eslint-disable-next-line
@@ -21,8 +23,8 @@ function UserClasses() {
     categories.forEach((category) => {
       category.classes.forEach((item) => {
         const status = setClassStatus(item.id, doneClasses)
-          ? 'checked'
-          : 'undone';
+          ? "checked"
+          : "undone";
         const line = {
           id: item.id,
           title: item.title,
@@ -120,6 +122,7 @@ function UserClasses() {
                 );
               })}
           </div>
+          <App />
         </div>
       </div>
     </div>
