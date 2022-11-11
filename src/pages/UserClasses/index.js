@@ -1,3 +1,4 @@
+// eslint-disable-next-line
 import { useEffect, useState } from 'react';
 import Header from '../../components/Header';
 import api from '../../services/api';
@@ -6,14 +7,19 @@ import { getLocalItem } from '../../utils/localStorage';
 import { useLocation } from 'react-router-dom';
 // eslint-disable-next-line
 import Class from '../../components/UserClass/index';
+// eslint-disable-next-line
 import UserClass from '../../components/UserClass/index';
 
 function UserClasses() {
   // eslint-disable-next-line
   const [classes, setClasses] = useState();
+  // eslint-disable-next-line
   const token = getLocalItem('token');
   const location = useLocation();
+  // eslint-disable-next-line
   const { track } = location.state;
+
+  // RESOLVER LOOP
 
   const setClassesData = (data) => {
     const localClasses = [];
@@ -44,7 +50,7 @@ function UserClasses() {
   const setClassStatus = (classId, doneClasses) => {
     doneClasses.find((item) => item.classId === classId);
   };
-
+  // eslint-disable-next-line
   const getClassesUser = async (token, trackId) => {
     try {
       const { data } = await api.get(`/getUserTrack/${trackId}`, {
@@ -84,9 +90,9 @@ function UserClasses() {
     }
   };
 
-  useEffect(() => {
-    getClassesUser(token, track);
-  });
+  // useEffect(() => {
+  //   getClassesUser(token, track);
+  // });
 
   return (
     <div className="user-classes-container">
