@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import Header from '../../components/Header';
-import UserClass from '../../components/TESTE';
+import UserClass from '../../components/UserClass';
 import api from '../../services/api';
 import { getLocalItem } from '../../utils/localStorage';
 import './styles.css';
