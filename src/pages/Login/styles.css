@@ -14,7 +14,7 @@
 }
 
 .logo {
-  width: 21rem;
+  width: 15rem;
   position: absolute;
   top: -1.4rem;
   left: 0;
@@ -85,7 +85,7 @@
 }
 
 .login-form button {
-  margin-top: 4rem;
+  margin-top: 2rem;
   align-self: center;
   border-radius: 50px;
   background-color: var(--orange2);
@@ -111,5 +111,10 @@
     height: 100%;
     width: 100%;
     background: none;
+  }
+
+  .label,
+  .login-form button {
+    font-size: 1.8rem;
   }
 }
