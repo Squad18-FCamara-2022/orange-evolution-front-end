@@ -1,25 +1,21 @@
-// eslint-disable-next-line
 import { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import Header from '../../components/Header';
 import api from '../../services/api';
-import './styles.css';
 import { getLocalItem } from '../../utils/localStorage';
-import { useLocation } from 'react-router-dom';
+import './styles.css';
 
 function UserClasses() {
   // eslint-disable-next-line
   const [classes, setClasses] = useState();
-  // eslint-disable-next-line
   const token = getLocalItem('token');
   const location = useLocation();
-  // eslint-disable-next-line
   const { track } = location.state;
-
-  // RESOLVER LOOP
 
   const setClassesData = (data) => {
     const localClasses = [];
     const doneClasses = data.userTrackClasses;
+    console.log(doneClasses);
     const categories = data.trackDetails.categories;
     categories.forEach((category) => {
       category.classes.forEach((item) => {
@@ -33,7 +29,7 @@ function UserClasses() {
           author: item.author,
           duration: item.duration,
           link: item.link,
-          categoryId: item.categoryId,
+          category: category.name,
           status: status,
         };
         localClasses.push(line);
@@ -44,7 +40,7 @@ function UserClasses() {
   };
 
   const setClassStatus = (classId, doneClasses) => {
-    doneClasses.find((item) => item.classId === classId);
+    return doneClasses.find((item) => item.classId === classId);
   };
 
   // eslint-disable-next-line
@@ -56,6 +52,7 @@ function UserClasses() {
         },
       });
       setClassesData(data);
+      console.log(data);
     } catch (error) {
       console.log(error);
     }
@@ -87,9 +84,10 @@ function UserClasses() {
     }
   };
 
-  // useEffect(() => {
-  //   getClassesUser(token, track);
-  // });
+  useEffect(() => {
+    getClassesUser(token, track);
+    // eslint-disable-next-line
+  }, []);
 
   return (
     <div className="user-classes-container">
