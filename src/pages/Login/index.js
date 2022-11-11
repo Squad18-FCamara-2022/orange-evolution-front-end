@@ -47,32 +47,44 @@ function Login() {
 
   return (
     <div className="login-container">
-      <header className="login-header">
-        {' '}
-        <img className="logo" src={Logo} alt="logo" />
-      </header>
+      <header className="login-header"> </header>
+      <img className="logo" src={Logo} alt="logo" />
       <div className="login-main">
         <div className="login-form">
           <h1>LOGIN</h1>
           <form onSubmit={handleSubmit(onSubmit)}>
-            <label for="email">E-mail</label>
-            <input type="text" name="email" {...register('email')} />
+            <label className="label" htmlFor="email">
+              E-mail
+            </label>
+            <input
+              className="input"
+              type="text"
+              name="email"
+              {...register('email')}
+            />
 
-            <p>{errors.email?.message}</p>
-            <label for="password">Senha</label>
-            <input type="password" name="password" {...register('password')} />
+            <p className="error">{errors.email?.message}</p>
+            <label className="label" htmlFor="password">
+              Senha
+            </label>
+            <input
+              className="input"
+              type="password"
+              name="password"
+              {...register('password')}
+            />
 
-            <p>{errors.password?.message}</p>
-            <p>{warning}</p>
+            <p className="error">{errors.password?.message}</p>
+            <p className="error">{warning}</p>
             <div className="remember-password">
               <input type="checkbox" id="remember" name="remember" />
-              <label for="remember">Lembre de mim</label>
+              <label htmlFor="remember">Lembre de mim</label>
             </div>
+            <p className="signup-link">
+              Novo na Orange Juice? <Link to="/cadastrar">CRIAR UMA CONTA</Link>
+            </p>
             <button type="submit">Conecte-se</button>
           </form>
-          <p className="signup-link">
-            Novo na Orange Juice? <Link to="/cadastrar">CRIAR UMA CONTA</Link>
-          </p>
         </div>
       </div>
     </div>

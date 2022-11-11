@@ -19,7 +19,7 @@ function Header() {
         <ul>
           <li>
             <a href="/home">
-              <i class="bi bi-house"></i>
+              <i className="bi bi-house"></i>
             </a>
           </li>
           <li>
@@ -32,7 +32,7 @@ function Header() {
             </a>
           </li>
           <li>
-            <i class="bi bi-box-arrow-right" onClick={logout}></i>
+            <i className="bi bi-box-arrow-right" onClick={logout}></i>
           </li>
         </ul>
       </nav>
