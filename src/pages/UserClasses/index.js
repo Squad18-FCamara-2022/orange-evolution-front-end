@@ -45,7 +45,7 @@ function UserClasses() {
     return doneClasses.find((item) => item.classId === classId);
   };
 
-  const getClassesUser = async (token, trackId) => {
+  const getClassesUser = async (trackId) => {
     try {
       const { data } = await api.get(`/getUserTrack/${trackId}`, {
         headers: {
@@ -59,21 +59,24 @@ function UserClasses() {
     }
   };
 
-  const addDoneClass = async (token, classId) => {
-    console.log(token);
+  const addDoneClass = async (classId) => {
     try {
-      const response = await api.post(`/createUserClass/${classId}`, {
-        headers: {
-          authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await api.post(
+        `/createUserClass/${classId}`,
+        {},
+        {
+          headers: {
+            authorization: `Bearer ${token}`,
+          },
+        }
+      );
       console.log(response);
     } catch (error) {
       console.log(error);
     }
   };
 
-  const deleteDoneClass = async (token, classId) => {
+  const deleteDoneClass = async (classId) => {
     try {
       const response = await api.delete(`/deleteUserClass/${classId}`, {
         headers: {
@@ -87,7 +90,7 @@ function UserClasses() {
   };
 
   useEffect(() => {
-    getClassesUser(token, track);
+    getClassesUser(track);
     // eslint-disable-next-line
   }, []);
 
