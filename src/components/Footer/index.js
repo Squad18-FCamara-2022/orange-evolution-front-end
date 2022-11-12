@@ -1,21 +1,20 @@
-import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Logo from '../../assets/logo-orange.png';
+import { useEffect, useState } from 'react';
 import { useAuthContext } from '../../contexts/AuthenticationContext';
 import { clearLocalStorage } from '../../utils/localStorage';
 import './styles.css';
 
-function Header({ page }) {
+function Footer({ page }) {
   const navigate = useNavigate();
   const { setToken } = useAuthContext();
-  const [headerNav, setHeaderNav] = useState(false);
+  const [footerNav, setFooterNav] = useState(false);
 
   const showNav = () => {
     if (page === 'login' || page === 'signup') {
-      setHeaderNav(false);
+      setFooterNav(false);
       console.log(false);
     } else {
-      setHeaderNav(true);
+      setFooterNav(true);
       console.log(true);
     }
   };
@@ -32,11 +31,10 @@ function Header({ page }) {
   }, []);
 
   return (
-    <div className="header-container">
-      <img className="header-logo" src={Logo} alt="logo" />
-      {headerNav && (
+    <div className="footer-container">
+      {footerNav && (
         <nav>
-          <ul className="header-nav">
+          <ul className="footer-nav">
             <li>
               <a href="/home">
                 <i className="bi bi-house"></i>
@@ -52,7 +50,7 @@ function Header({ page }) {
               </a>
             </li>
             <li>
-              <i className="bi bi-person-circle"></i>
+              <i class="bi bi-person-circle"></i>
             </li>
             <li>
               <button onClick={logout}>
@@ -66,4 +64,4 @@ function Header({ page }) {
   );
 }
 
-export default Header;
+export default Footer;

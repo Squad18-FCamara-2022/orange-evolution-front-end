@@ -97,7 +97,6 @@ const Aba = ({ titulo, selecionado, ...props }) => {
 
 const App = async (dadosDaTrilha) => {
   const [aba, setAba] = useState(1);
-  console.log(dadosDaTrilha);
 
   return (
     <div className="teste">

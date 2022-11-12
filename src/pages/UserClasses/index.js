@@ -48,49 +48,50 @@ function UserClasses() {
     return doneClasses.find((item) => item.classId === classId);
   };
 
-  const getClassesUser = async (token, trackId) => {
+  const getClassesUser = async (trackId) => {
     try {
-      const { data } = await api.get(`/getUserTrack/${trackId}`, {
+      const response = await api.get(`/getUserTrack/${trackId}`, {
         headers: {
           authorization: `Bearer ${token}`,
         },
       });
-      setClassesData(data);
-      console.log(data);
+      setClassesData(response.data);
     } catch (error) {
       console.log(error);
     }
   };
 
-  const addDoneClass = async (token, classId) => {
-    console.log(token);
+  const addDoneClass = async (classId) => {
     try {
-      const response = await api.post(`/createUserClass/${classId}`, {
-        headers: {
-          authorization: `Bearer ${token}`,
-        },
-      });
-      console.log(response);
+      const response = await api.post(
+        `/createUserClass/${classId}`,
+        {},
+        {
+          headers: {
+            authorization: `Bearer ${token}`,
+          },
+        }
+      );
     } catch (error) {
       console.log(error);
     }
   };
 
-  const deleteDoneClass = async (token, classId) => {
+  const deleteDoneClass = async (classId) => {
     try {
       const response = await api.delete(`/deleteUserClass/${classId}`, {
         headers: {
           authorization: `Bearer ${token}`,
         },
       });
-      console.log(response);
     } catch (error) {
       console.log(error);
     }
   };
 
   useEffect(() => {
-    getClassesUser(token, track);
+    console.log("bananana");
+    getClassesUser(track);
     // eslint-disable-next-line
   }, []);
 
@@ -124,7 +125,8 @@ function UserClasses() {
                 );
               })}
           </div>
-          <App dadosDaTrilha={localClasses} />
+
+          {localClasses && <App dadosDaTrilha={localClasses} />}
         </div>
       </div>
     </div>

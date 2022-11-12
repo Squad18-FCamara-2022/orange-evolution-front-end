@@ -1,15 +1,9 @@
-import { getLocalItem } from "../../utils/localStorage";
 import { useState, useEffect } from "react";
 import "./styles.css";
 
 function UserClass({ classInfo, addDoneClass, deleteDoneClass }) {
-  // eslint-disable-next-line
   const { id, title, type, author, duration, link, status } = classInfo;
-  // eslint-disable-next-line
   const [checked, setChecked] = useState();
-
-  // eslint-disable-next-line
-  const token = getLocalItem("token");
 
   const setStatus = () => {
     if (status === "checked") {
@@ -19,21 +13,20 @@ function UserClass({ classInfo, addDoneClass, deleteDoneClass }) {
     }
   };
 
+  const handleClassStatus = () => {
+    if (checked === true) {
+      setChecked(!checked);
+      deleteDoneClass(id);
+    } else {
+      setChecked(!checked);
+      addDoneClass(id);
+    }
+  };
+
   useEffect(() => {
     setStatus();
     // eslint-disable-next-line
   }, []);
-
-  // eslint-disable-next-line
-  const handleClassStatus = async () => {
-    setChecked(!checked);
-    try {
-      await addDoneClass(token, id);
-    } catch (error) {
-      console.log(error);
-      setChecked(!checked);
-    }
-  };
 
   return (
     <div className="class-container">
@@ -55,7 +48,7 @@ function UserClass({ classInfo, addDoneClass, deleteDoneClass }) {
       <div className="class column5">
         <input
           type="checkbox"
-          defaultChecked={checked}
+          defaultChecked={status === "checked"}
           onChange={handleClassStatus}
         ></input>
       </div>
