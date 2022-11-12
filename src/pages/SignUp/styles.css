@@ -3,27 +3,6 @@
   width: 100vw;
 }
 
-.signup-header {
-  background-color: var(--orange2);
-  height: 9rem;
-  width: 100vw;
-  position: fixed;
-  top: 0;
-
-  display: flex;
-}
-
-.logo {
-  width: 15rem;
-  position: fixed;
-  top: -1.4rem;
-  left: 0;
-  right: 0;
-  margin-left: auto;
-  margin-right: auto;
-  z-index: 1;
-}
-
 .signup-main {
   padding-top: 9rem;
   width: 100%;
@@ -57,40 +36,12 @@
   width: 100%;
 }
 
-.input {
-  background: #f5f5f5;
-  border: none;
-  border-radius: 5px;
-
-  height: 5rem;
-  padding: 1rem;
-
-  font-family: Montserrat, sans-serif;
-  font-size: 1.8rem;
-}
-
-.label {
-  margin-top: 1.5rem;
-}
-
-.error {
-  color: var(--orange3);
-  font-weight: bold;
-}
-
-.submit-button {
-  margin-top: 3rem;
-  align-self: center;
-  border-radius: 50px;
-  background-color: var(--orange2);
-  padding: 2rem 3rem;
-  font-size: 2.4rem;
-  font-weight: bold;
-}
-
 .login-link {
   margin-top: 2rem;
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
 }
 
 .login-link a {
@@ -98,19 +49,12 @@
 }
 
 @media only screen and (max-width: 620px) {
-  .signup-header {
-    display: none;
-  }
-
   .signup-form {
     min-width: 0;
     height: 100%;
     width: 100%;
     background: none;
-  }
-
-  .label,
-  .signup-form button {
-    font-size: 1.8rem;
+    padding: 3rem;
+    gap: 1.5rem;
   }
 }

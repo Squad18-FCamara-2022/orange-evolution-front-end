@@ -5,7 +5,8 @@ import { Link } from 'react-router-dom';
 import * as yup from 'yup';
 import { useAuthContext } from '../../contexts/AuthenticationContext';
 import './styles.css';
-import Logo from '../../assets/logo-orange.png';
+import Header from '../../components/Header';
+import Footer from '../../components/Footer';
 
 const errorMessages = {
   email: 'Digite um e-mail válido',
@@ -47,8 +48,8 @@ function Login() {
 
   return (
     <div className="login-container">
-      <header className="login-header"> </header>
-      <img className="logo" src={Logo} alt="logo" />
+      <Header page="login" />
+
       <div className="login-main">
         <div className="login-form">
           <h1>LOGIN</h1>
@@ -91,6 +92,7 @@ function Login() {
           </form>
         </div>
       </div>
+      <Footer page="login" />
     </div>
   );
 }

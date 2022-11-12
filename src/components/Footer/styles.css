@@ -1,0 +1,41 @@
+.footer-container {
+  background-color: var(--orange2);
+  height: 9rem;
+  width: 100vw;
+  position: fixed;
+  bottom: 0;
+
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.footer-nav {
+  display: flex;
+  gap: 3rem;
+  padding: 7rem;
+}
+
+.footer-nav i {
+  font-size: 5rem;
+}
+
+.login-footer {
+  background-color: var(--orange2);
+  height: 2rem;
+  width: 100vw;
+  position: fixed;
+  bottom: 0;
+}
+
+@media only screen and (min-width: 621px) {
+  .footer-container {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 620px) {
+  .footer-container {
+    display: none;
+  }
+}

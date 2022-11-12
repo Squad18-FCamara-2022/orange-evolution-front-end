@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import * as yup from 'yup';
 import { useAuthContext } from '../../contexts/AuthenticationContext';
 import './styles.css';
-import Logo from '../../assets/logo-orange.png';
+import Header from '../../components/Header';
 
 const errorMessages = {
   name: 'Nome obrigatório',
@@ -58,8 +58,8 @@ function SignUp() {
 
   return (
     <div className="signup-container">
-      <header className="signup-header"> </header>
-      <img className="logo" src={Logo} alt="logo" />
+      <Header page="signup" />
+
       <div className="signup-main">
         <div className="signup-form">
           <h1>CADASTRE-SE</h1>
@@ -114,6 +114,7 @@ function SignUp() {
           </form>
         </div>
       </div>
+      <footer className="login-footer"></footer>
     </div>
   );
 }
