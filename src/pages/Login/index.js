@@ -1,15 +1,15 @@
-import { yupResolver } from "@hookform/resolvers/yup";
-import { useState } from "react";
-import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
-import * as yup from "yup";
-import { useAuthContext } from "../../contexts/AuthenticationContext";
-import "./styles.css";
-import Logo from "../../assets/logo-orange.png";
+import { yupResolver } from '@hookform/resolvers/yup';
+import { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { Link } from 'react-router-dom';
+import * as yup from 'yup';
+import { useAuthContext } from '../../contexts/AuthenticationContext';
+import './styles.css';
+import Logo from '../../assets/logo-orange.png';
 
 const errorMessages = {
-  email: "Digite um e-mail válido",
-  password: "A senha deve ter entre 4 e 10 caracteres",
+  email: 'Digite um e-mail válido',
+  password: 'A senha deve ter entre 4 e 10 caracteres',
 };
 
 const validationSchema = yup.object().shape({
@@ -54,36 +54,40 @@ function Login() {
           <h1>LOGIN</h1>
           <form onSubmit={handleSubmit(onSubmit)}>
             <label className="label" htmlFor="email">
-              E-mail
+              <h3>E-mail</h3>
             </label>
             <input
               className="input"
               type="text"
               name="email"
-              {...register("email")}
+              {...register('email')}
             />
 
             <p className="error">{errors.email?.message}</p>
             <label className="label" htmlFor="password">
-              Senha
+              <h3>Senha</h3>
             </label>
             <input
               className="input"
               type="password"
               name="password"
-              {...register("password")}
+              {...register('password')}
             />
 
             <p className="error">{errors.password?.message}</p>
             <p className="error">{warning}</p>
             <div className="remember-password">
               <input type="checkbox" id="remember" name="remember" />
-              <label htmlFor="remember">Lembre de mim</label>
+              <label htmlFor="remember">
+                <h4>Lembre de mim</h4>
+              </label>
             </div>
-            <p className="signup-link">
+            <h3 className="signup-link">
               Novo na Orange Juice? <Link to="/cadastrar">CRIAR UMA CONTA</Link>
-            </p>
-            <button type="submit">Conecte-se</button>
+            </h3>
+            <button type="submit" className="submit-button">
+              <h2>Conecte-se</h2>
+            </button>
           </form>
         </div>
       </div>
