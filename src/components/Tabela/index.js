@@ -5,7 +5,7 @@ const ABAS = {
   fullStack: [],
   UX: [
     "O Início",
-    "Fundamenuhdhuehdehhos de UX (User Interface)",
+    "Fundamentos de UX (User Interface)",
     "Fundamentos de UI (User Interface)",
     "Opcional",
   ],
@@ -95,8 +95,9 @@ const Aba = ({ titulo, selecionado, ...props }) => {
   );
 };
 
-const App = () => {
+const App = async (dadosDaTrilha) => {
   const [aba, setAba] = useState(1);
+  console.log(dadosDaTrilha);
 
   return (
     <div className="teste">

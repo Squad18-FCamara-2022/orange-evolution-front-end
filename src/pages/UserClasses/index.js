@@ -1,18 +1,20 @@
-
-import { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
-import Header from '../../components/Header';
-import UserClass from '../../components/UserClass';
-import api from '../../services/api';
-import { getLocalItem } from '../../utils/localStorage';
-import './styles.css';
+import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
+import Header from "../../components/Header";
+import UserClass from "../../components/UserClass";
+import api from "../../services/api";
+import { getLocalItem } from "../../utils/localStorage";
+import "./styles.css";
 import App from "../../components/Tabela";
 
 function UserClasses() {
   // eslint-disable-next-line
   const [classes, setClasses] = useState();
   const [localClasses, setLocalClasses] = useState();
-  const token = getLocalItem('token');
+  const token = getLocalItem("token");
+
+  // passando props por meio de páginas.
+  // O state foi passado no componente Link da página Home
   const location = useLocation();
   const { track } = location.state;
 
@@ -122,7 +124,7 @@ function UserClasses() {
                 );
               })}
           </div>
-          <App />
+          <App dadosDaTrilha={localClasses} />
         </div>
       </div>
     </div>

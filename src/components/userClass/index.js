@@ -1,6 +1,6 @@
-import { getLocalItem } from '../../utils/localStorage';
-import { useState, useEffect } from 'react';
-import './styles.css';
+import { getLocalItem } from "../../utils/localStorage";
+import { useState, useEffect } from "react";
+import "./styles.css";
 
 function UserClass({ classInfo, addDoneClass, deleteDoneClass }) {
   // eslint-disable-next-line
@@ -9,10 +9,10 @@ function UserClass({ classInfo, addDoneClass, deleteDoneClass }) {
   const [checked, setChecked] = useState();
 
   // eslint-disable-next-line
-  const token = getLocalItem('token');
+  const token = getLocalItem("token");
 
   const setStatus = () => {
-    if (status === 'checked') {
+    if (status === "checked") {
       setChecked(true);
     } else {
       setChecked(false);
