@@ -1,12 +1,12 @@
-import { useState, useEffect } from 'react';
-import './styles.css';
+import { useState, useEffect } from "react";
+import "./styles.css";
 
 function UserClass({ classInfo, addDoneClass, deleteDoneClass }) {
   const { id, title, type, author, duration, link, status } = classInfo;
   const [checked, setChecked] = useState();
 
   const setStatus = () => {
-    if (status === 'checked') {
+    if (status === "checked") {
       setChecked(true);
     } else {
       setChecked(false);
@@ -48,7 +48,7 @@ function UserClass({ classInfo, addDoneClass, deleteDoneClass }) {
       <div className="class column5">
         <input
           type="checkbox"
-          defaultChecked={status === 'checked'}
+          defaultChecked={status === "checked"}
           onChange={handleClassStatus}
         ></input>
       </div>

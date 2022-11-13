@@ -1,8 +1,5 @@
-.container-exemplo {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  height: 100vh;
-  width: 100vw;
+.user-classes-top {
+  margin-top: 20rem;
+  margin-bottom: 8rem;
+  padding-left: 12rem;
 }

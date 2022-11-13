@@ -1,25 +1,25 @@
-import { Link } from 'react-router-dom';
-import Header from '../../components/Header';
-import './styles.css';
+import { Link } from "react-router-dom";
+import Header from "../../components/Header";
+import "./styles.css";
 
 const releases = [
   {
     id: 1,
-    date: '24/10/2022',
+    date: "24/10/2022",
     message:
-      'Olá estudantes, a trilha de UX/UI Designer foi atualizada com novos conteúdos.',
+      "Olá estudantes, a trilha de UX/UI Designer foi atualizada com novos conteúdos.",
   },
   {
     id: 2,
-    date: '30/10/2022',
+    date: "30/10/2022",
     message:
-      'Olá estudantes, a trilha de Desenvolvimento Full Stack foi atualizada com novos conteúdos.',
+      "Olá estudantes, a trilha de Desenvolvimento Full Stack foi atualizada com novos conteúdos.",
   },
   {
     id: 3,
-    date: '04/11/2022',
+    date: "04/11/2022",
     message:
-      'Olá estudantes, a trilha de Quality Assurance (QA) foi atualizada com novos conteúdos.',
+      "Olá estudantes, a trilha de Quality Assurance (QA) foi atualizada com novos conteúdos.",
   },
 ];
 
@@ -29,13 +29,13 @@ function Home() {
       <Header />
       <div className="home-main">
         <div className="main-tracks">
-          <Link to="/trilhas" state={{ track: 'cla93d3yi0000vw8nti3frpr0' }}>
+          <Link to="/trilhas" state={{ trackId: "cla93d3yi0000vw8nti3frpr0" }}>
             Desenvolvimento Full Stack
           </Link>
-          <Link to="/trilhas" state={{ track: 'cla93egpn0002vw8np291twvw' }}>
+          <Link to="/trilhas" state={{ trackId: "cla93egpn0002vw8np291twvw" }}>
             Quality Assurance (QA)
           </Link>
-          <Link to="/trilhas" state={{ track: 'cla93f9p70004vw8nbp1vev5m' }}>
+          <Link to="/trilhas" state={{ trackId: "cla93f9p70004vw8nbp1vev5m" }}>
             UX/UI Designer
           </Link>
         </div>
