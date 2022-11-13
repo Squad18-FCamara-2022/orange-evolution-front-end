@@ -1,0 +1,128 @@
+.home-container {
+  height: 100vh;
+  width: 100vw;
+}
+
+.home-main {
+  padding-top: 9rem;
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.home-title {
+  padding: 7rem 9rem 0 9rem;
+  text-align: center;
+  line-height: 5rem;
+}
+
+.home-title span {
+  color: var(--orange4);
+}
+
+.main-tracks {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+
+  width: 100%;
+  padding: 4rem 9rem;
+}
+
+.main-tracks a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+  font-size: 2.4rem;
+  font-weight: bold;
+
+  background-color: var(--orange4);
+  padding: 3rem;
+  width: 30rem;
+  border-radius: 50px;
+}
+
+.main-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 3rem;
+
+  width: 100%;
+  padding: 0 9rem 5rem 9rem;
+}
+
+.main-discord {
+  text-align: center;
+  line-height: 3rem;
+  padding: 0 4rem 0 4rem;
+  flex: 1;
+}
+
+.main-discord i {
+  font-size: 15rem;
+}
+
+.main-releases {
+  background-color: var(--grey1);
+  padding: 4rem;
+  flex: 1;
+  border-radius: 50px;
+  line-height: 2rem;
+}
+
+.release-item {
+  margin-top: 2rem;
+  font-size: 1.8rem;
+}
+
+.release-item p:first-child {
+  color: var(--orange4);
+}
+
+@media only screen and (max-width: 620px) {
+  .home-main {
+    padding-top: 6rem;
+    padding-bottom: 5rem;
+  }
+
+  .home-title,
+  .main-bottom,
+  .main-releases {
+    padding: 3rem;
+  }
+
+  .home-title {
+    line-height: 3rem;
+  }
+
+  .main-tracks {
+    padding: 0 3rem 0 3rem;
+  }
+
+  .main-tracks a {
+    font-size: 1.8rem;
+    padding: 1rem;
+  }
+
+  .main-discord {
+    line-height: 2rem;
+    padding: 0;
+  }
+
+  .main-discord i {
+    font-size: 8rem;
+  }
+
+  .main-bottom {
+    flex-direction: column;
+  }
+}

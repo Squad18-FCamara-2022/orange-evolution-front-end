@@ -1,0 +1,38 @@
+.footer-container {
+  background-color: var(--orange2);
+  height: 9rem;
+  width: 100vw;
+  position: fixed;
+  bottom: 0;
+
+  display: flex;
+  align-items: center;
+}
+
+.footer-container nav {
+  width: 100%;
+}
+
+.footer-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+
+  padding: 1rem;
+}
+
+.footer-nav i {
+  font-size: 3rem;
+}
+
+@media only screen and (min-width: 621px) {
+  .footer-container {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 620px) {
+  .footer-container {
+    height: 5rem;
+  }
+}

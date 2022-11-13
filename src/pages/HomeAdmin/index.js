@@ -1,5 +1,7 @@
 // import { useState } from 'react';
 // import api from '../../services/api';
+import Footer from '../../components/Footer';
+import Header from '../../components/Header';
 import './styles.css';
 // import { getLocalItem } from '../../utils/localStorage';
 
@@ -74,7 +76,8 @@ function HomeAdmin() {
 
   return (
     <div className="container-exemplo">
-      <h1>Example</h1>
+      <Header page="admin" />
+      <Footer page="admin" />
     </div>
   );
 }

@@ -1,8 +1,5 @@
-.container-exemplo {
+.class-container {
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-
-  height: 100vh;
-  width: 100vw;
 }
