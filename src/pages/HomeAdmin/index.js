@@ -14,15 +14,41 @@ function HomeAdmin() {
   // eslint-disable-next-line
   const [localClasses, setLocalClasses] = useState();
 
-  //tratar informações que são recebidas
+  const setAdminList = (data) => {
+    const adminList = [];
+    data.forEach((track) => {
+      track.categories.forEach((category) => {
+        category.classes.forEach((item) => {
+          const line = {
+            id: item.id,
+            title: item.title,
+            type: item.contentType,
+            author: item.author,
+            duration: item.duration,
+            link: item.link,
+            categoryId: category.id,
+            categoryName: category.name,
+            trackId: track.id,
+            trackName: track.name,
+            usersCount: item._count.UsersOnClasses,
+          };
+          adminList.push(line);
+        });
+      });
+    });
+    setClasses(adminList);
+    setLocalClasses(adminList);
+  };
+
   const getClassesAdmin = async () => {
     try {
-      const response = await api.get(`/getTracksAdmin`, {
+      const { data } = await api.get(`/getTracksAdmin`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
-      console.log(response);
+      console.log(data);
+      setAdminList(data);
     } catch (error) {
       console.log(error);
     }
@@ -60,7 +86,10 @@ function HomeAdmin() {
           Authorization: `Bearer ${token}`,
         },
       });
-      console.log(response);
+      const classesUptaded = classes.filter((item) => {
+        return item.id !== classId;
+      });
+      setLocalClasses(classesUptaded);
     } catch (error) {
       console.log(error);
     }
@@ -77,7 +106,9 @@ function HomeAdmin() {
       <div className="admin-main">
         <div className="admin-main-top">
           <SearchInput />
-          <button className="add-content-button">+ Adicionar conteúdo</button>
+          <button className="add-content-button" onClick={addClass}>
+            + Adicionar conteúdo
+          </button>
         </div>
         <div className="admin-main-bottom">
           <div className="admin-header-info"></div>
