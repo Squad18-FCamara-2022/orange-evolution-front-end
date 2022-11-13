@@ -1,8 +1,30 @@
-.container-exemplo {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
+.container-admin {
   height: 100vh;
   width: 100vw;
+}
+
+.admin-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  padding: 9rem 7rem 3rem 7rem;
+}
+
+.admin-main-top {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 2rem;
+  width: 100%;
+
+  padding-top: 5rem;
+}
+
+.add-content-button {
+  border-radius: 50px;
+  background-color: var(--orange2);
+  padding: 2rem 3rem;
+  font-size: 2rem;
+  font-weight: bold;
 }
