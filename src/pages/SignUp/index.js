@@ -6,6 +6,7 @@ import * as yup from 'yup';
 import { useAuthContext } from '../../contexts/AuthenticationContext';
 import './styles.css';
 import Header from '../../components/Header';
+import Footer from '../../components/Footer';
 
 const errorMessages = {
   name: 'Nome obrigatório',
@@ -114,7 +115,7 @@ function SignUp() {
           </form>
         </div>
       </div>
-      <footer className="login-footer"></footer>
+      <Footer page="signup" />
     </div>
   );
 }

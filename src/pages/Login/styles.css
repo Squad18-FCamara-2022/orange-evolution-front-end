@@ -84,6 +84,9 @@
 }
 
 @media only screen and (max-width: 620px) {
+  .login-main {
+    padding-top: 8rem;
+  }
   .login-form {
     height: 100%;
     width: 100%;

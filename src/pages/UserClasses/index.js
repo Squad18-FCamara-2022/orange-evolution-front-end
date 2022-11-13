@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
+import Footer from '../../components/Footer';
 import Header from '../../components/Header';
 import UserClass from '../../components/UserClass';
 import api from '../../services/api';
 import { getLocalItem } from '../../utils/localStorage';
 import './styles.css';
-import App from '../../components/Tabela';
 
 function UserClasses() {
   // eslint-disable-next-line
@@ -96,37 +96,29 @@ function UserClasses() {
 
   return (
     <div className="user-classes-container">
-      <Header />
+      <Header page="user-classes" />
       <div className="user-classes-main">
         <div className="user-classes-top">
           <h1>Nome da trilha</h1>
-          <a
-            href="https://discord.gg/B8KYUqVWM4"
-            target="_blank"
-            rel="noreferrer"
-          >
-            <i className="bi bi-discord"></i>
-          </a>
         </div>
         <div className="user-classes-content">
-          <div className="user-classes-header"></div>
+          <div className="user-classes-header">HEADER</div>
           <div className="user-classes-rows">
             {localClasses &&
               localClasses.map((userClass) => {
                 return (
-                  <div className="user-class-row" key={userClass.id}>
-                    <UserClass
-                      classInfo={userClass}
-                      addDoneClass={addDoneClass}
-                      deleteDoneClass={deleteDoneClass}
-                    />
-                  </div>
+                  <UserClass
+                    key={userClass.id}
+                    classInfo={userClass}
+                    addDoneClass={addDoneClass}
+                    deleteDoneClass={deleteDoneClass}
+                  />
                 );
               })}
           </div>
-          <App />
         </div>
       </div>
+      <Footer page="user-classes" />
     </div>
   );
 }

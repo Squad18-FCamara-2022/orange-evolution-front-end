@@ -6,26 +6,23 @@
   bottom: 0;
 
   display: flex;
-  justify-content: flex-end;
   align-items: center;
+}
+
+.footer-container nav {
+  width: 100%;
 }
 
 .footer-nav {
   display: flex;
-  gap: 3rem;
-  padding: 7rem;
+  align-items: center;
+  justify-content: space-around;
+
+  padding: 1rem;
 }
 
 .footer-nav i {
-  font-size: 5rem;
-}
-
-.login-footer {
-  background-color: var(--orange2);
-  height: 2rem;
-  width: 100vw;
-  position: fixed;
-  bottom: 0;
+  font-size: 3rem;
 }
 
 @media only screen and (min-width: 621px) {
@@ -36,6 +33,6 @@
 
 @media only screen and (max-width: 620px) {
   .footer-container {
-    display: none;
+    height: 5rem;
   }
 }
