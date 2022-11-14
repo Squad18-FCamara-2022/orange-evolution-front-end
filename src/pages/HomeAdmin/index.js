@@ -11,7 +11,6 @@ function HomeAdmin() {
   const token = getLocalItem('token');
   // eslint-disable-next-line
   const [classes, setClasses] = useState();
-  // eslint-disable-next-line
   const [localClasses, setLocalClasses] = useState();
 
   const setAdminList = (data) => {
@@ -47,7 +46,6 @@ function HomeAdmin() {
           Authorization: `Bearer ${token}`,
         },
       });
-      console.log(data);
       setAdminList(data);
     } catch (error) {
       console.log(error);
@@ -81,12 +79,12 @@ function HomeAdmin() {
 
   const deleteClass = async (classId) => {
     try {
-      const response = await api.delete(`/deleteClassAdmin/${classId}`, {
+      await api.delete(`/deleteClassAdmin/${classId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
-      const classesUptaded = classes.filter((item) => {
+      const classesUptaded = localClasses.filter((item) => {
         return item.id !== classId;
       });
       setLocalClasses(classesUptaded);
@@ -111,7 +109,13 @@ function HomeAdmin() {
           </button>
         </div>
         <div className="admin-main-bottom">
-          <div className="admin-header-info"></div>
+          <div className="admin-header-table">
+            <h4>Resumo das informações</h4>
+            <div>
+              <h4>Editar</h4>
+              <h4>Deletar</h4>
+            </div>
+          </div>
           <div className="admin-content-table">
             {localClasses &&
               localClasses.map((adminClass) => {

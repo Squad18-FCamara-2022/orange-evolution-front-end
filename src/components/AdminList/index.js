@@ -5,9 +5,13 @@ function AdminList({ classInfo, deleteClass }) {
 
   return (
     <div className="admin-class-container">
-      <div className="asmin-class-info">
-        <p>
-          {trackName} | {categoryName} | {type} | {author} | {title} |
+      <div className="admin-class-info">
+        <p className="desktop-list">
+          Trilha: {trackName} | Categoria: {categoryName} | Tipo: {type} | Por:{' '}
+          {author} | {title} |
+        </p>
+        <p className="mobile-list">
+          {trackName} | {categoryName} <br /> {type} | {author} | {title}
         </p>
       </div>
       <button className="admin-edit-button">

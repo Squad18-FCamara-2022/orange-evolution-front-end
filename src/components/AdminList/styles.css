@@ -1,0 +1,75 @@
+.admin-class-container {
+  width: 100%;
+  display: flex;
+  padding-right: 1rem;
+  align-items: center;
+}
+
+.admin-class-info,
+.admin-edit-button,
+.admin-delete-button {
+  background-color: var(--grey1);
+
+  padding: 1rem;
+  border-radius: 20px;
+  line-height: 3rem;
+}
+
+.admin-class-info {
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.admin-class-info:hover {
+  white-space: normal;
+}
+
+.admin-edit-button,
+.admin-delete-button {
+  padding: 1rem 3rem;
+  margin-left: 1rem;
+}
+
+@media only screen and (max-width: 620px) {
+  .mobile-list {
+    display: block;
+    text-align: center;
+  }
+  .desktop-list {
+    display: none;
+  }
+
+  .admin-class-container {
+    background-color: var(--grey1);
+    border-radius: 20px;
+    padding: 0.2rem 1rem;
+  }
+
+  .admin-class-info,
+  .admin-edit-button,
+  .admin-delete-button {
+    padding: 0;
+    background-color: none;
+    border-radius: none;
+    line-height: 2rem;
+  }
+
+  .admin-class-info p {
+    font-size: 1rem;
+  }
+
+  .admin-edit-button i,
+  .admin-delete-button i {
+    font-size: 1.4rem;
+  }
+}
+
+@media only screen and (min-width: 621px) {
+  .mobile-list {
+    display: none;
+  }
+  .desktop-list {
+    display: block;
+  }
+}

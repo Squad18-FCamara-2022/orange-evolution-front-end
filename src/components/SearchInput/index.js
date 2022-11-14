@@ -6,13 +6,14 @@ import SearchIcon from '@mui/icons-material/Search';
 export default function SearchInput() {
   return (
     <Paper
+      className="search-input"
       component="form"
       sx={{
         p: '2px 4px',
         display: 'flex',
         alignItems: 'center',
         borderRadius: 50,
-        minWidth: 285,
+        maxWidth: 285,
       }}
     >
       <InputBase
