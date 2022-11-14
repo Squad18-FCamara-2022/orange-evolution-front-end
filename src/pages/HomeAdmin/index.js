@@ -1,82 +1,163 @@
-// import { useState } from 'react';
-// import api from '../../services/api';
+import { useEffect, useState } from 'react';
+import AddClassModal from '../../components/AddClassModal';
+import AdminList from '../../components/AdminList';
 import Footer from '../../components/Footer';
 import Header from '../../components/Header';
+import SearchInput from '../../components/SearchInput';
+import api from '../../services/api';
+import { getLocalItem } from '../../utils/localStorage';
 import './styles.css';
-// import { getLocalItem } from '../../utils/localStorage';
 
 function HomeAdmin() {
-  // get da api para listar todas as aulas de todas as trilhas
-  // post para api para adicionar uma nova aula
-  // patch para api para editar uma aula
-  // // delete para excluir uma aula
-  // const token = getLocalItem('token');
-  // const [classes, setClasses] = useState();
-  // const [localClasses, setLocalClasses] = useState();
+  const token = getLocalItem('token');
+  // eslint-disable-next-line
+  const [classes, setClasses] = useState();
+  const [categories, setCategories] = useState();
+  const [localClasses, setLocalClasses] = useState();
+  const [addClassModal, setAddClassModal] = useState(false);
 
-  // const getClassesAdmin = async ({ token }) => {
-  //   try {
-  //     const { data } = await api.get(`/class`, {
-  //       headers: {
-  //         Authorization: `Bearer ${token}`,
-  //       },
-  //     });
-  //     setClasses(data);
-  //     setLocalClasses(data);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
+  const handleModalAddClass = () => {
+    setAddClassModal(!addClassModal);
+  };
 
-  // const addClass = async ({ token }) => {
-  //   try {
-  //     await api.post(`/class`,
-  //     {
-  //       //adicionar dados da classe aqui + nos parâmetros da função
-  //     },
-  //     {
-  //       headers: {
-  //         Authorization: `Bearer ${token}`,
-  //       },
-  //     });
+  const setAdminList = (data) => {
+    const adminClassList = [];
+    const categoryList = [];
+    data.forEach((track) => {
+      track.categories.forEach((category) => {
+        const categoryListItem = {
+          trackName: track.name,
+          trackId: track.id,
+          categoryName: category.name,
+          categoryId: category.id,
+        };
+        categoryList.push(categoryListItem);
 
-  //     setLocalClasses(...localClasses, /*adicionar dados da classe*/);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
+        category.classes.forEach((item) => {
+          const classListItem = {
+            id: item.id,
+            title: item.title,
+            type: item.contentType,
+            author: item.author,
+            duration: item.duration,
+            link: item.link,
+            categoryId: category.id,
+            categoryName: category.name,
+            trackId: track.id,
+            trackName: track.name,
+            usersCount: item._count.UsersOnClasses,
+          };
+          adminClassList.push(classListItem);
+        });
+      });
+      setCategories(categoryList);
+    });
+    setClasses(adminClassList);
+    setLocalClasses(adminClassList);
+  };
 
-  // const editClass = async ({ token }) => {
-  //   try {
-  //     const { data } = await api.get(`/class`, {
-  //       headers: {
-  //         Authorization: `Bearer ${token}`,
-  //       },
-  //     });
-  //     setClasses(data);
-  //     setLocalClasses(data);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
+  const getClassesAdmin = async () => {
+    try {
+      const { data } = await api.get(`/getTracksAdmin`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      setAdminList(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
-  // const deleteClass = async ({ token }) => {
-  //   try {
-  //     const { data } = await api.get(`/class`, {
-  //       headers: {
-  //         Authorization: `Bearer ${token}`,
-  //       },
-  //     });
-  //     setClasses(data);
-  //     setLocalClasses(data);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
+  const addClass = async (classInfo) => {
+    try {
+      const response = await api.post(
+        `/createNewClassAdmin`,
+        {
+          title: classInfo.title,
+          contentType: classInfo.type,
+          author: classInfo.author,
+          duration: classInfo.duration,
+          link: classInfo.link,
+          categoryId: classInfo.category,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      getClassesAdmin();
+
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const deleteClass = async (classId) => {
+    try {
+      await api.delete(`/deleteClassAdmin/${classId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      const classesUptaded = localClasses.filter((item) => {
+        return item.id !== classId;
+      });
+      setLocalClasses(classesUptaded);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getClassesAdmin();
+    // eslint-disable-next-line
+  }, []);
 
   return (
-    <div className="container-exemplo">
+    <div className="container-admin">
       <Header page="admin" />
+      <div className="admin-main">
+        <div className="admin-main-top">
+          <SearchInput />
+          <button
+            className="add-content-button"
+            onClick={() => handleModalAddClass()}
+          >
+            + Adicionar conteúdo
+          </button>
+        </div>
+        <div className="admin-main-bottom">
+          <div className="admin-header-table">
+            <h4>Resumo das informações</h4>
+            <div>
+              <h4>Editar</h4>
+              <h4>Deletar</h4>
+            </div>
+          </div>
+          <div className="admin-content-table">
+            {localClasses &&
+              localClasses.map((adminClass) => {
+                return (
+                  <AdminList
+                    key={adminClass.id}
+                    classInfo={adminClass}
+                    deleteClass={deleteClass}
+                  />
+                );
+              })}
+          </div>
+        </div>
+      </div>
+      {addClassModal && (
+        <AddClassModal
+          addClass={addClass}
+          categories={categories}
+          modalState={handleModalAddClass}
+        />
+      )}
       <Footer page="admin" />
     </div>
   );

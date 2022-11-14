@@ -13,10 +13,8 @@ function Header({ page }) {
   const showNav = () => {
     if (page === 'login' || page === 'signup') {
       setHeaderNav(false);
-      console.log(false);
     } else {
       setHeaderNav(true);
-      console.log(true);
     }
   };
 

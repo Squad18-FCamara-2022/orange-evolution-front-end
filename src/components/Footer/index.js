@@ -12,10 +12,8 @@ function Footer({ page }) {
   const showNav = () => {
     if (page === 'login' || page === 'signup') {
       setFooterNav(false);
-      console.log(false);
     } else {
       setFooterNav(true);
-      console.log(true);
     }
   };
 
@@ -50,7 +48,7 @@ function Footer({ page }) {
               </a>
             </li>
             <li>
-              <i class="bi bi-person-circle"></i>
+              <i className="bi bi-person-circle"></i>
             </li>
             <li>
               <button onClick={logout}>

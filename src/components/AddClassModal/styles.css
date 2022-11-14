@@ -1,0 +1,71 @@
+.modal-background {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 9rem;
+
+  width: 100%;
+  height: 100%;
+
+  background: rgba(145, 154, 150, 0.3);
+  backdrop-filter: blur(4px);
+
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+}
+
+.close-button {
+  position: absolute;
+  top: 5rem;
+  right: 5rem;
+  font-size: 2rem;
+}
+
+.add-class-modal-container {
+  padding: 7rem 5rem 5rem 5rem;
+  background-color: var(--grey1);
+  border-radius: 20px;
+  position: relative;
+}
+
+.add-class-modal-container form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.add-class-modal-container .input {
+  flex: 1;
+  min-width: 43rem;
+  max-height: 3rem;
+}
+
+.error {
+  max-width: 43rem;
+  white-space: normal;
+}
+
+@media only screen and (max-width: 620px) {
+  .modal-background {
+    padding-top: 0;
+  }
+
+  .close-button {
+    top: 5rem;
+  }
+
+  .add-class-modal-container {
+    height: 100%;
+    width: 100%;
+    padding: 7rem 3rem 5rem 3rem;
+  }
+
+  .add-class-modal-container .input {
+    min-width: 0;
+  }
+}

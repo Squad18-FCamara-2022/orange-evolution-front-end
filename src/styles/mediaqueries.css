@@ -1,6 +1,10 @@
 @media only screen and (max-width: 620px) {
   body {
-    font-size: 1.4rem;
+    font-size: 1.2rem;
+  }
+
+  p {
+    font-size: 1.2rem;
   }
 
   h1 {
@@ -17,5 +21,13 @@
 
   h4 {
     font-size: 1.4rem;
+  }
+
+  ::-webkit-scrollbar {
+    display: none;
+  }
+
+  * {
+    scrollbar-width: 0;
   }
 }
