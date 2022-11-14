@@ -63,7 +63,7 @@ function UserClasses() {
 
   const addDoneClass = async (classId) => {
     try {
-      const response = await api.post(
+      await api.post(
         `/createUserClass/${classId}`,
         {},
         {
@@ -79,7 +79,7 @@ function UserClasses() {
 
   const deleteDoneClass = async (classId) => {
     try {
-      const response = await api.delete(`/deleteUserClass/${classId}`, {
+      await api.delete(`/deleteUserClass/${classId}`, {
         headers: {
           authorization: `Bearer ${token}`,
         },
