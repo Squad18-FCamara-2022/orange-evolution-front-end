@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
-import AddClassModal from '../../components/AddClassModal';
-import AdminList from '../../components/AdminList';
+import AddClassModal from './components/AddClassModal';
+import AdminList from './components/AdminList';
 import Footer from '../../components/Footer';
 import Header from '../../components/Header';
-import SearchInput from '../../components/SearchInput';
+import SearchInput from './components/SearchInput';
 import api from '../../services/api';
 import { getLocalItem } from '../../utils/localStorage';
 import SimpleBackdrop from '../../components/Backdrop';

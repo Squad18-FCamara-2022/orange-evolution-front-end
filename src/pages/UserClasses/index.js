@@ -2,13 +2,13 @@ import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
-import TrackTabs from '../../components/TrackTabs';
-import TrackTabsHeader from '../../components/TrackTabs/TrackTabsHeader';
-import TabLine from '../../components/TrackTabs/TabLine';
+import TrackTabs from './components/TrackTabs';
+import TrackTabsHeader from './components/TrackTabs/TrackTabsHeader';
+import TabLine from './components/TrackTabs/TabLine';
 import { getUserTrackDetails } from '../../hooks/useTrack';
 import SimpleBackdrop from '../../components/Backdrop';
 import './styles.css';
-import UserProgress from '../../components/UserProgress';
+import UserProgress from './components/UserProgress';
 
 // componente principal da página
 // um componente no React é uma função JavaScript que retorna um HTML
