@@ -12,6 +12,9 @@ function UserClasses() {
   const [classes, setClasses] = useState();
   const [localClasses, setLocalClasses] = useState();
   const token = getLocalItem('token');
+
+  // passando props por meio de páginas.
+  // O state foi passado no componente Link da página Home
   const location = useLocation();
   const { track } = location.state;
 
@@ -47,13 +50,12 @@ function UserClasses() {
 
   const getClassesUser = async (trackId) => {
     try {
-      const { data } = await api.get(`/getUserTrack/${trackId}`, {
+      const response = await api.get(`/getUserTrack/${trackId}`, {
         headers: {
           authorization: `Bearer ${token}`,
         },
       });
-      setClassesData(data);
-      console.log(data);
+      setClassesData(response.data);
     } catch (error) {
       console.log(error);
     }
@@ -70,7 +72,6 @@ function UserClasses() {
           },
         }
       );
-      console.log(response);
     } catch (error) {
       console.log(error);
     }
@@ -83,13 +84,13 @@ function UserClasses() {
           authorization: `Bearer ${token}`,
         },
       });
-      console.log(response);
     } catch (error) {
       console.log(error);
     }
   };
 
   useEffect(() => {
+    console.log('bananana');
     getClassesUser(track);
     // eslint-disable-next-line
   }, []);
