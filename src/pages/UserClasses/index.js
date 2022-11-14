@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import Footer from '../../components/Footer';
 import Header from '../../components/Header';
+import Footer from '../../components/Footer';
 import UserClass from '../../components/UserClass';
 import api from '../../services/api';
 import { getLocalItem } from '../../utils/localStorage';
@@ -47,13 +47,12 @@ function UserClasses() {
 
   const getClassesUser = async (trackId) => {
     try {
-      const { data } = await api.get(`/getUserTrack/${trackId}`, {
+      const response = await api.get(`/getUserTrack/${trackId}`, {
         headers: {
           authorization: `Bearer ${token}`,
         },
       });
-      setClassesData(data);
-      console.log(data);
+      setClassesData(response.data);
     } catch (error) {
       console.log(error);
     }
