@@ -14,6 +14,7 @@ function UserClasses() {
   const location = useLocation();
   const { trackId } = location.state;
 
+  const [isLoading, setIsloading] = useState(false);
   // estado para as aulas
   const [aba, setAba] = useState(0);
   // estado para as categorias
@@ -27,8 +28,14 @@ function UserClasses() {
     return doneClasses.find((item) => item.classId === classId);
   };
 
+  // sempre que a aula mudar...
   useEffect(() => {
+    setIsloading(true);
+
     getUserTrackDetails(trackId).then((data) => {
+      // limpar as aulas do usuário
+      setUserCategoryClasses([]);
+
       setUserTrackDetails(data);
 
       // atualizar as categorias
@@ -63,14 +70,17 @@ function UserClasses() {
         userClassesArray.push(line);
       });
 
+      //atualizar array de aulas do usuário
       setUserCategoryClasses(userClassesArray);
+
+      setIsloading(false);
     });
   }, [aba]);
 
   return (
     <div className="user-classes-container">
       <Header />
-      {userTrackDetails && categories && userCategoryClasses && (
+      {userTrackDetails && categories && (
         <div className="user-classes-main">
           <div className="user-classes-top">
             <h1>{userTrackDetails.trackDetails.name}</h1>
@@ -78,9 +88,13 @@ function UserClasses() {
           <div className="user-classes-content">
             <TrackTabs aba={aba} categories={categories} setAba={setAba} />
             <TrackTabsHeader />
-            {userCategoryClasses.map((dados, i) => (
-              <TabLine key={`linha-${i}`} dados={dados} />
-            ))}
+            {isLoading === false ? (
+              userCategoryClasses.map((dados, i) => (
+                <TabLine key={`linha-${i}`} dados={dados} />
+              ))
+            ) : (
+              <h1>Carregando</h1>
+            )}
           </div>
         </div>
       )}
