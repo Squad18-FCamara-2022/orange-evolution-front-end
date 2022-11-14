@@ -42,10 +42,10 @@ function UserClass({ classInfo, addDoneClass, deleteDoneClass }) {
       <div className="column4">
         <span>{duration}</span>
       </div>
-      <div className="column6">
+      <div className="column5">
         <span>{link}</span>
       </div>
-      <div className="column5">
+      <div className="column6">
         <input
           type="checkbox"
           defaultChecked={status === "checked"}

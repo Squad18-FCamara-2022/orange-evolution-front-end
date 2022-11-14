@@ -1,9 +1,13 @@
-.user-classes-main {
-  padding-top: 12rem;
-  display: flex;
-  flex-direction: column;
-  width: 100vw;
+.user-classes-container {
   height: 100vh;
+  width: 100vw;
+}
+
+.user-classes-top {
+  padding: 9rem;
+
+  display: flex;
+  justify-content: space-between;
 }
 
 .user-classes-content {

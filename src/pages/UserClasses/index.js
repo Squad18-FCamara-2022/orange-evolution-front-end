@@ -2,122 +2,108 @@ import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
-import UserClass from "../../components/UserClass";
-import api from "../../services/api";
-import { getLocalItem } from "../../utils/localStorage";
+import TrackTabs from "../../components/TrackTabs";
+import TrackTabsHeader from "../../components/TrackTabs/TrackTabsHeader";
+import TabLine from "../../components/TrackTabs/TabLine";
+import { getUserTrackDetails } from "../../hooks/useTrack";
+import SimpleBackdrop from "../../components/Backdrop";
 import "./styles.css";
+import UserProgress from "../../components/UserProgress";
 
+// componente principal da página
+// um componente no React é uma função JavaScript que retorna um HTML
 function UserClasses() {
-  // eslint-disable-next-line
-  const [classes, setClasses] = useState();
-  const [localClasses, setLocalClasses] = useState();
-  const token = getLocalItem("token");
+  // pegar o trackId do location
   const location = useLocation();
-  const { track } = location.state;
+  const { trackId, trackName } = location.state;
 
-  const setClassesData = (data) => {
-    const classesArray = [];
-    const doneClasses = data.userTrackClasses;
-    const categories = data.trackDetails.categories;
-    categories.forEach((category) => {
-      category.classes.forEach((item) => {
-        const status = setClassStatus(item.id, doneClasses)
-          ? "checked"
-          : "undone";
-        const line = {
-          id: item.id,
-          title: item.title,
-          type: item.contentType,
-          author: item.author,
-          duration: item.duration,
-          link: item.link,
-          category: category.name,
-          status: status,
-        };
-        classesArray.push(line);
-      });
-    });
-    setClasses(classesArray);
-    setLocalClasses(classesArray);
-  };
-
+  const [isLoading, setIsloading] = useState(false);
+  // estado para as aulas
+  const [aba, setAba] = useState(0);
+  // estado para as categorias
+  const [categories, setCategories] = useState();
+  // estado para os dados da trilha do usuário
+  const [userTrackDetails, setUserTrackDetails] = useState();
+  // estado para as aulas da trilha do usuário
+  const [userCategoryClasses, setUserCategoryClasses] = useState();
+  // função para definir o estado da aula
   const setClassStatus = (classId, doneClasses) => {
     return doneClasses.find((item) => item.classId === classId);
   };
 
-  const getClassesUser = async (trackId) => {
-    try {
-      const response = await api.get(`/getUserTrack/${trackId}`, {
-        headers: {
-          authorization: `Bearer ${token}`,
-        },
-      });
-      setClassesData(response.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const addDoneClass = async (classId) => {
-    try {
-      const response = await api.post(
-        `/createUserClass/${classId}`,
-        {},
-        {
-          headers: {
-            authorization: `Bearer ${token}`,
-          },
-        }
-      );
-      console.log(response);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const deleteDoneClass = async (classId) => {
-    try {
-      const response = await api.delete(`/deleteUserClass/${classId}`, {
-        headers: {
-          authorization: `Bearer ${token}`,
-        },
-      });
-      console.log(response);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
+  // sempre que a aula mudar...
   useEffect(() => {
-    getClassesUser(track);
+    setIsloading(true);
+
+    getUserTrackDetails(trackId).then((data) => {
+      // limpar as aulas do usuário
+      setUserCategoryClasses([]);
+
+      setUserTrackDetails(data);
+
+      // atualizar as categorias
+      setCategories(data.trackDetails.categories);
+
+      // iniciar um array vazio para armazenar as aulas
+      const userClassesArray = [];
+
+      // pegar aulas da trilha que o usuário já fez
+      const doneClasses = data.userTrackClasses;
+
+      // pegar aulas da categoria (aba) que o user clicou
+      const categoryClasses = data.trackDetails.categories[aba].classes;
+
+      categoryClasses.forEach((classItem) => {
+        const classStatus = setClassStatus(classItem.id, doneClasses)
+          ? "checked"
+          : "undone";
+
+        // montar objeto da aula para inserir no array
+        const line = {
+          id: classItem.id,
+          title: classItem.title,
+          type: classItem.contentType,
+          author: classItem.author,
+          duration: classItem.duration,
+          link: classItem.link,
+          status: classStatus,
+        };
+
+        // inserir a aula no array
+        userClassesArray.push(line);
+      });
+
+      //atualizar array de aulas do usuário
+      setUserCategoryClasses(userClassesArray);
+
+      setIsloading(false);
+    });
     // eslint-disable-next-line
-  }, []);
+  }, [aba]);
 
   return (
     <div className="user-classes-container">
-      <Header page="user-classes" />
-      <div className="user-classes-main">
-        <div className="user-classes-top">
-          <h1>Nome da trilha</h1>
-        </div>
-        <div className="user-classes-content">
-          <div className="user-classes-header">HEADER</div>
-          <div className="user-classes-rows">
-            {localClasses &&
-              localClasses.map((userClass) => {
-                return (
-                  <UserClass
-                    key={userClass.id}
-                    classInfo={userClass}
-                    addDoneClass={addDoneClass}
-                    deleteDoneClass={deleteDoneClass}
-                  />
-                );
-              })}
+      <Header page="user-tracks" />
+      {userTrackDetails && categories && (
+        <div className="user-classes-main">
+          <div className="user-classes-top">
+            <h1>{trackName}</h1>
+            <UserProgress value={50} />
+          </div>
+          <div className="user-classes-content">
+            <TrackTabs aba={aba} categories={categories} setAba={setAba} />
+            <TrackTabsHeader />
+            {isLoading === false ? (
+              userCategoryClasses.map((dados, i) => (
+                <TabLine key={`linha-${i}`} dados={dados} />
+              ))
+            ) : (
+              <SimpleBackdrop />
+            )}
           </div>
         </div>
-      </div>
-      <Footer page="user-classes" />
+      )}
+      <Footer page="user-tracks" />
     </div>
   );
 }

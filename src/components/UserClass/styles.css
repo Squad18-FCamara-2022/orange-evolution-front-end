@@ -2,6 +2,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+<<<<<<< HEAD
   background-color: #262626;
   padding: 20px;
   border-radius: 24px;
@@ -35,4 +36,48 @@
 
 .column6 {
   width: 10%;
+=======
+  justify-content: center;
+
+  height: 100vh;
+  width: 100vw;
+}
+
+.user-classes-main {
+  padding-top: 12rem;
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+}
+
+.user-classes-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+
+  width: 100%;
+  padding: 2rem;
+  background-color: darkblue;
+
+  border-radius: 5rem;
+}
+
+.user-classes-header {
+  width: 100%;
+  border-bottom: 1px solid gainsboro;
+}
+
+.user-classes-rows {
+  width: 100%;
+  gap: 2rem;
+}
+
+.class-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+>>>>>>> 64393e04302c425e30bca4ac211187c49e697b64
 }
