@@ -1,35 +1,38 @@
 .linha {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background-color: #262626;
-    padding: 4px 30px;
-    border-radius: 10px;
-    margin-top: 8px;
-    margin-bottom: 8px;
-  }
-  
-  .linha-responsavel {
-    text-align: center;
-    font-weight: bold;
-  }
-  
-  .linha-tipo {
-    text-align: center;
-    font-weight: bold;
-  }
-  
-  .linha-duracao {
-    text-align: center;
-    font-weight: bold;
-  }
-  
-  .linha-conteudo {
-    text-align: center;
-    font-weight: bold;
-  }
-  
-  .linha-status {
-    text-align: center;
-    font-weight: bold;
-  }
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #262626;
+  padding: 20px;
+  border-radius: 24px;
+  margin: 9px 0px 9px 0px;
+}
+
+.linha-titulo {
+  flex: 2;
+}
+
+.linha-responsavel {
+  flex: 1;
+  text-align: center;
+}
+
+.linha-tipo {
+  flex: 1;
+  text-align: center;
+}
+
+.linha-duracao {
+  flex: 1;
+  text-align: center;
+}
+
+.linha-conteudo {
+  flex: 1;
+  text-align: center;
+}
+
+.linha-status {
+  flex: 1;
+  text-align: center;
+}

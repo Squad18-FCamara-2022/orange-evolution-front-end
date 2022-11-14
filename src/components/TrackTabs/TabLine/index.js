@@ -56,18 +56,20 @@ export default function TabLine({ dados }) {
 
   return (
     <div className="linha">
-      <div className="linha-responsavel">{dados.title || "-"}</div>
+      <div className="linha-titulo">{dados.title || "-"}</div>
       <div className="linha-responsavel">{dados.author || "-"}</div>
       <div className="linha-tipo">{dados.type || "-"}</div>
       <div className="linha-duracao">{dados.duration || "-"}</div>
       <div className="linha-conteudo">
         {dados.link ? <a href={dados.link}>Icon</a> : "-"}
       </div>
-      <input
-        type="checkbox"
-        defaultChecked={checkboxStatus}
-        onChange={handleChangeClassStatus}
-      />
+      <div className="linha-status">
+        <input
+          type="checkbox"
+          defaultChecked={checkboxStatus}
+          onChange={handleChangeClassStatus}
+        />
+      </div>
     </div>
   );
 }
