@@ -82,6 +82,7 @@ function UserClasses() {
           authorization: `Bearer ${token}`,
         },
       });
+      console.log(response);
     } catch (error) {
       console.log(error);
     }
