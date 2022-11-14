@@ -29,23 +29,23 @@ function UserClass({ classInfo, addDoneClass, deleteDoneClass }) {
   }, []);
 
   return (
-    <div className="class-container">
-      <div className="class column1">
+    <div className="container">
+      <div className="column1">
         <span>{title}</span>
       </div>
-      <div className="class column2">
+      <div className="column2">
         <span>{type}</span>
       </div>
-      <div className="class column3">
+      <div className="column3">
         <span>{author}</span>
       </div>
-      <div className="class column4">
+      <div className="column4">
         <span>{duration}</span>
       </div>
-      <div className="class column6">
+      <div className="column6">
         <span>{link}</span>
       </div>
-      <div className="class column5">
+      <div className="column5">
         <input
           type="checkbox"
           defaultChecked={status === "checked"}

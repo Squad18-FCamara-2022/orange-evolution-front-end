@@ -1,17 +1,17 @@
-import { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
-import Header from '../../components/Header';
-import Footer from '../../components/Footer';
-import UserClass from '../../components/UserClass';
-import api from '../../services/api';
-import { getLocalItem } from '../../utils/localStorage';
-import './styles.css';
+import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
+import Header from "../../components/Header";
+import Footer from "../../components/Footer";
+import UserClass from "../../components/UserClass";
+import api from "../../services/api";
+import { getLocalItem } from "../../utils/localStorage";
+import "./styles.css";
 
 function UserClasses() {
   // eslint-disable-next-line
   const [classes, setClasses] = useState();
   const [localClasses, setLocalClasses] = useState();
-  const token = getLocalItem('token');
+  const token = getLocalItem("token");
   const location = useLocation();
   const { track } = location.state;
 
@@ -22,8 +22,8 @@ function UserClasses() {
     categories.forEach((category) => {
       category.classes.forEach((item) => {
         const status = setClassStatus(item.id, doneClasses)
-          ? 'checked'
-          : 'undone';
+          ? "checked"
+          : "undone";
         const line = {
           id: item.id,
           title: item.title,

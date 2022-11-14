@@ -1,5 +1,38 @@
-.class-container {
+.container {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background-color: #262626;
+  padding: 20px;
+  border-radius: 24px;
+  margin: 8px 0px 8px 0px;
+}
+
+.container div {
+  display: flex;
+  justify-content: center;
+}
+
+.column1 {
+  width: 20%;
+}
+
+.column2 {
+  width: 20%;
+}
+
+.column3 {
+  width: 20%;
+}
+
+.column4 {
+  width: 20%;
+}
+
+.column5 {
+  width: 10%;
+}
+
+.column6 {
+  width: 10%;
 }
