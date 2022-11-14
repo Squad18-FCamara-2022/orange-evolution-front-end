@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import AddClassModal from '../../components/AddClassModal';
 import AdminList from '../../components/AdminList';
 import Footer from '../../components/Footer';
 import Header from '../../components/Header';
@@ -11,14 +12,29 @@ function HomeAdmin() {
   const token = getLocalItem('token');
   // eslint-disable-next-line
   const [classes, setClasses] = useState();
+  const [categories, setCategories] = useState();
   const [localClasses, setLocalClasses] = useState();
+  const [addClassModal, setAddClassModal] = useState(false);
+
+  const handleModalAddClass = () => {
+    setAddClassModal(!addClassModal);
+  };
 
   const setAdminList = (data) => {
-    const adminList = [];
+    const adminClassList = [];
+    const categoryList = [];
     data.forEach((track) => {
       track.categories.forEach((category) => {
+        const categoryListItem = {
+          trackName: track.name,
+          trackId: track.id,
+          categoryName: category.name,
+          categoryId: category.id,
+        };
+        categoryList.push(categoryListItem);
+
         category.classes.forEach((item) => {
-          const line = {
+          const classListItem = {
             id: item.id,
             title: item.title,
             type: item.contentType,
@@ -31,12 +47,13 @@ function HomeAdmin() {
             trackName: track.name,
             usersCount: item._count.UsersOnClasses,
           };
-          adminList.push(line);
+          adminClassList.push(classListItem);
         });
       });
+      setCategories(categoryList);
     });
-    setClasses(adminList);
-    setLocalClasses(adminList);
+    setClasses(adminClassList);
+    setLocalClasses(adminClassList);
   };
 
   const getClassesAdmin = async () => {
@@ -52,24 +69,25 @@ function HomeAdmin() {
     }
   };
 
-  const addClass = async () => {
+  const addClass = async (classInfo) => {
     try {
       const response = await api.post(
         `/createNewClassAdmin`,
-        // {
-        //   title,
-        //   contentType,
-        //   author,
-        //   duration,
-        //   link,
-        //   categoryId
-        // },
+        {
+          title: classInfo.title,
+          contentType: classInfo.type,
+          author: classInfo.author,
+          duration: classInfo.duration,
+          link: classInfo.link,
+          categoryId: classInfo.category,
+        },
         {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         }
       );
+      getClassesAdmin();
 
       console.log(response);
     } catch (error) {
@@ -104,7 +122,10 @@ function HomeAdmin() {
       <div className="admin-main">
         <div className="admin-main-top">
           <SearchInput />
-          <button className="add-content-button" onClick={addClass}>
+          <button
+            className="add-content-button"
+            onClick={() => handleModalAddClass()}
+          >
             + Adicionar conteúdo
           </button>
         </div>
@@ -123,7 +144,6 @@ function HomeAdmin() {
                   <AdminList
                     key={adminClass.id}
                     classInfo={adminClass}
-                    addClass={addClass}
                     deleteClass={deleteClass}
                   />
                 );
@@ -131,6 +151,13 @@ function HomeAdmin() {
           </div>
         </div>
       </div>
+      {addClassModal && (
+        <AddClassModal
+          addClass={addClass}
+          categories={categories}
+          modalState={handleModalAddClass}
+        />
+      )}
       <Footer page="admin" />
     </div>
   );

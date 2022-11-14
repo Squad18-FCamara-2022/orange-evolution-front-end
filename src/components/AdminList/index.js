@@ -8,7 +8,7 @@ function AdminList({ classInfo, deleteClass }) {
       <div className="admin-class-info">
         <p className="desktop-list">
           Trilha: {trackName} | Categoria: {categoryName} | Tipo: {type} | Por:{' '}
-          {author} | {title} |
+          {author} | {title}
         </p>
         <p className="mobile-list">
           {trackName} | {categoryName} <br /> {type} | {author} | {title}
