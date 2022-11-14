@@ -150,7 +150,7 @@ function HomeAdmin() {
             </div>
           </div>
           <div className="admin-content-table">
-            {isLoading === false ? (
+            {isLoading === false && localClasses ? (
               localClasses.map((adminClass) => {
                 return (
                   <AdminList

@@ -8,6 +8,7 @@ import TabLine from '../../components/TrackTabs/TabLine';
 import { getUserTrackDetails } from '../../hooks/useTrack';
 import SimpleBackdrop from '../../components/Backdrop';
 import './styles.css';
+import UserProgress from '../../components/UserProgress';
 
 // componente principal da página
 // um componente no React é uma função JavaScript que retorna um HTML
@@ -87,6 +88,7 @@ function UserClasses() {
         <div className="user-classes-main">
           <div className="user-classes-top">
             <h1>{trackName}</h1>
+            <UserProgress value={50} />
           </div>
           <div className="user-classes-content">
             <TrackTabs aba={aba} categories={categories} setAba={setAba} />
