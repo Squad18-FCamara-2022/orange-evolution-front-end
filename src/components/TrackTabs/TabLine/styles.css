@@ -1,0 +1,35 @@
+.linha {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #262626;
+    padding: 4px 30px;
+    border-radius: 10px;
+    margin-top: 8px;
+    margin-bottom: 8px;
+  }
+  
+  .linha-responsavel {
+    text-align: center;
+    font-weight: bold;
+  }
+  
+  .linha-tipo {
+    text-align: center;
+    font-weight: bold;
+  }
+  
+  .linha-duracao {
+    text-align: center;
+    font-weight: bold;
+  }
+  
+  .linha-conteudo {
+    text-align: center;
+    font-weight: bold;
+  }
+  
+  .linha-status {
+    text-align: center;
+    font-weight: bold;
+  }

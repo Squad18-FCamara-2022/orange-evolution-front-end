@@ -34,14 +34,32 @@ function Home() {
           Escolha uma trilha abaixo e começe sua jornada na tecnologia!
         </h1>
         <div className="main-tracks">
-          <Link to="/trilhas" state={{ track: 'cla93f9p70004vw8nbp1vev5m' }}>
+          <Link
+            to="/trilhas"
+            state={{
+              trackId: 'cla93f9p70004vw8nbp1vev5m',
+              trackName: 'UX/UI Designer',
+            }}
+          >
             UX/UI Designer
           </Link>
-          <Link to="/trilhas" state={{ track: 'cla93d3yi0000vw8nti3frpr0' }}>
+          <Link
+            to="/trilhas"
+            state={{
+              trackId: 'cla93d3yi0000vw8nti3frpr0',
+              trackName: 'Desenvolvimento Full Stack',
+            }}
+          >
             Desenvolvimento <br />
             Full Stack
           </Link>
-          <Link to="/trilhas" state={{ track: 'cla93egpn0002vw8np291twvw' }}>
+          <Link
+            to="/trilhas"
+            state={{
+              trackId: 'cla93egpn0002vw8np291twvw',
+              trackName: 'Quality Assurance (QA)',
+            }}
+          >
             Quality Assurance (QA)
           </Link>
         </div>

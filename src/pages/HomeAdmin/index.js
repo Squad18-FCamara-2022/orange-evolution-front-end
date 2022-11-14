@@ -6,6 +6,7 @@ import Header from '../../components/Header';
 import SearchInput from '../../components/SearchInput';
 import api from '../../services/api';
 import { getLocalItem } from '../../utils/localStorage';
+import SimpleBackdrop from '../../components/Backdrop';
 import './styles.css';
 
 function HomeAdmin() {
@@ -15,6 +16,8 @@ function HomeAdmin() {
   const [categories, setCategories] = useState();
   const [localClasses, setLocalClasses] = useState();
   const [addClassModal, setAddClassModal] = useState(false);
+
+  const [isLoading, setIsloading] = useState(false);
 
   const handleModalAddClass = () => {
     setAddClassModal(!addClassModal);
@@ -57,6 +60,7 @@ function HomeAdmin() {
   };
 
   const getClassesAdmin = async () => {
+    setIsloading(true);
     try {
       const { data } = await api.get(`/getTracksAdmin`, {
         headers: {
@@ -64,12 +68,15 @@ function HomeAdmin() {
         },
       });
       setAdminList(data);
+      setIsloading(false);
     } catch (error) {
       console.log(error);
+      setIsloading(false);
     }
   };
 
   const addClass = async (classInfo) => {
+    setIsloading(true);
     try {
       const response = await api.post(
         `/createNewClassAdmin`,
@@ -90,12 +97,15 @@ function HomeAdmin() {
       getClassesAdmin();
 
       console.log(response);
+      setIsloading(false);
     } catch (error) {
       console.log(error);
+      setIsloading(false);
     }
   };
 
   const deleteClass = async (classId) => {
+    setIsloading(true);
     try {
       await api.delete(`/deleteClassAdmin/${classId}`, {
         headers: {
@@ -106,8 +116,10 @@ function HomeAdmin() {
         return item.id !== classId;
       });
       setLocalClasses(classesUptaded);
+      setIsloading(false);
     } catch (error) {
       console.log(error);
+      setIsloading(false);
     }
   };
 
@@ -138,7 +150,7 @@ function HomeAdmin() {
             </div>
           </div>
           <div className="admin-content-table">
-            {localClasses &&
+            {isLoading === false ? (
               localClasses.map((adminClass) => {
                 return (
                   <AdminList
@@ -147,7 +159,10 @@ function HomeAdmin() {
                     deleteClass={deleteClass}
                   />
                 );
-              })}
+              })
+            ) : (
+              <SimpleBackdrop />
+            )}
           </div>
         </div>
       </div>

@@ -1,31 +1,10 @@
-.user-classes-main {
-  padding-top: 12rem;
-  display: flex;
-  flex-direction: column;
-  width: 100vw;
-  height: 100vh;
+.user-classes-top {
+  margin-top: 20rem;
+  margin-bottom: 8rem;
+  padding-left: 12rem;
 }
 
 .user-classes-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 2rem;
-
-  width: 100%;
-  padding: 2rem;
-  background-color: darkblue;
-
-  border-radius: 5rem;
-}
-
-.user-classes-header {
-  width: 100%;
-  border-bottom: 1px solid gainsboro;
-}
-
-.user-classes-rows {
-  width: 100%;
-  gap: 2rem;
+  padding-left: 6rem;
+  padding-right: 6rem;
 }

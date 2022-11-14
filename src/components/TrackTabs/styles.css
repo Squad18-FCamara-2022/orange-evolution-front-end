@@ -1,0 +1,20 @@
+.user-classes-tabs {
+  display: flex;
+}
+
+.user-classes-tabs :not(:first-child) {
+  margin-left: 4px;
+}
+
+
+.linha-cabecalho {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #262626;
+  padding: 4px 30px;
+  border-radius: 10px;
+  margin-top: 8px;
+  margin-bottom: 8px;
+  background-color: black;
+}
