@@ -89,7 +89,7 @@ function SignUp() {
               <h3>Senha</h3>
             </label>
             <input
-              type="text"
+              type="password"
               name="password"
               {...register('password')}
               className="input"
@@ -99,7 +99,7 @@ function SignUp() {
               <h3>Confirme a senha</h3>
             </label>
             <input
-              type="text"
+              type="password"
               name="confirmPassword"
               {...register('confirmPassword')}
               className="input"
