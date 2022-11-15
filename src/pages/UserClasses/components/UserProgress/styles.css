@@ -1,0 +1,7 @@
+.progress-container {
+  min-width: 30rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}

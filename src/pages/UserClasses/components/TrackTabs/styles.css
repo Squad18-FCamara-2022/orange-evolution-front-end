@@ -1,0 +1,7 @@
+.user-classes-tabs {
+  display: flex;
+}
+
+.user-classes-tabs :not(:first-child) {
+  margin-left: 4px;
+}
