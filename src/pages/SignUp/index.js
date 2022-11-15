@@ -7,10 +7,6 @@ import { useAuthContext } from '../../contexts/AuthenticationContext';
 import './styles.css';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
 
 const errorMessages = {
   name: 'Nome obrigatório',
