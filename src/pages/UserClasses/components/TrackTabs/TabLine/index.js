@@ -5,7 +5,7 @@ import { useState } from 'react';
 
 export default function TabLine({ dados }) {
   const [checkboxStatus, setCheckboxStatus] = useState(
-    dados.status == 'checked' ? true : false
+    dados.status === 'checked' ? true : false
   );
   const token = getLocalItem('token');
   const classId = dados.id;
