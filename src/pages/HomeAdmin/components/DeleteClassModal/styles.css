@@ -1,0 +1,56 @@
+.delete-class-modal-container {
+  padding: 5rem;
+  background-color: var(--grey1);
+  border-radius: 20px;
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 3rem;
+}
+
+.delete-class-modal-container i {
+  font-size: 20rem;
+}
+
+.delete-class-buttons {
+  display: flex;
+  gap: 2rem;
+}
+
+.confirm-delete,
+.cancel-delete {
+  border-radius: 50px;
+
+  padding: 2rem 4rem;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.confirm-delete {
+  background-color: var(--orange2);
+}
+.cancel-delete {
+  background-color: var(--light);
+  color: var(--dark);
+}
+
+@media only screen and (max-width: 620px) {
+  .delete-class-modal-container {
+    height: 100%;
+    width: 100%;
+    padding: 5rem 3rem;
+  }
+  .confirm-delete,
+  .cancel-delete {
+    padding: 1rem 2rem;
+    font-size: 1.4rem;
+  }
+
+  .delete-class-modal-container i {
+    font-size: 10rem;
+  }
+}

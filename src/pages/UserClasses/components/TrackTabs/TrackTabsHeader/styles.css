@@ -1,10 +1,10 @@
 .linha-cabecalho {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  background-color: #262626;
-  padding: 20px;
+  gap: 1rem;
+  padding: 2rem;
   border-radius: 10px;
-  margin: 9px 0px 9px 0px;
-  background-color: black;
+  margin: 0.9rem 0;
+  background-color: var(--dark);
+  font-weight: bold;
 }

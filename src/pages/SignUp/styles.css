@@ -53,9 +53,29 @@
   color: var(--orange4);
 }
 
+.role-check {
+  margin-top: 1rem;
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.6rem;
+  padding: 0 1rem;
+  border-radius: 5px;
+  flex: 1;
+}
+
 @media only screen and (max-width: 620px) {
   .signup-main {
-    padding-top: 6rem;
+    padding-top: 3rem;
   }
   .signup-form {
     min-width: 0;
@@ -64,5 +84,9 @@
     background: none;
     padding: 3rem;
     gap: 1.5rem;
+  }
+
+  .login-link {
+    margin-top: 1rem;
   }
 }

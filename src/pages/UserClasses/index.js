@@ -26,6 +26,13 @@ function UserClasses() {
   const [userTrackDetails, setUserTrackDetails] = useState();
   // estado para as aulas da trilha do usuário
   const [userCategoryClasses, setUserCategoryClasses] = useState();
+  // estado pegar aulas da categoria (aba) que o user clicou
+  const [categoryClassesState, setCategoryClassesState] = useState();
+  //estado para a categoria atual da aba
+  const [currentCategory, setCurrentCategory] = useState();
+
+  const [progress, setProgress] = useState();
+
   // função para definir o estado da aula
   const setClassStatus = (classId, doneClasses) => {
     return doneClasses.find((item) => item.classId === classId);
@@ -37,6 +44,7 @@ function UserClasses() {
 
     getUserTrackDetails(trackId).then((data) => {
       // limpar as aulas do usuário
+      console.log(data);
       setUserCategoryClasses([]);
 
       setUserTrackDetails(data);
@@ -52,6 +60,28 @@ function UserClasses() {
 
       // pegar aulas da categoria (aba) que o user clicou
       const categoryClasses = data.trackDetails.categories[aba].classes;
+
+      //atualizar o state de aulas da categoria
+      setCategoryClassesState(categoryClasses);
+
+      //para atualizar o progresso do usuário/////////
+      // iniciar um array vazio para armazenar aulas já concluídas daquela categoria
+      const doneClassesCategory = [];
+      setCurrentCategory(data.trackDetails.categories[aba]);
+
+      categoryClasses.forEach((categoryClass) => {
+        doneClasses.forEach((item) => {
+          if (item.classId === categoryClass.id) {
+            doneClassesCategory.push(item);
+          }
+        });
+      });
+
+      // atualizar progresso do usuário
+      setProgress(
+        Math.round((doneClassesCategory.length / categoryClasses.length) * 100)
+      );
+      //fim progresso do usuário/////////
 
       categoryClasses.forEach((classItem) => {
         const classStatus = setClassStatus(classItem.id, doneClasses)
@@ -88,14 +118,20 @@ function UserClasses() {
         <div className="user-classes-main">
           <div className="user-classes-top">
             <h1>{trackName}</h1>
-            <UserProgress value={50} />
+            <UserProgress value={progress} />
           </div>
           <div className="user-classes-content">
             <TrackTabs aba={aba} categories={categories} setAba={setAba} />
             <TrackTabsHeader />
             {isLoading === false ? (
               userCategoryClasses.map((dados, i) => (
-                <TabLine key={`linha-${i}`} dados={dados} />
+                <TabLine
+                  key={`linha-${i}`}
+                  dados={dados}
+                  category={currentCategory}
+                  categoryClasses={categoryClassesState}
+                  setProgress={setProgress}
+                />
               ))
             ) : (
               <SimpleBackdrop />

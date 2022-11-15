@@ -1,20 +1,33 @@
-import './styles.css';
-import api from '../../../../../services/api';
-import { getLocalItem } from '../../../../../utils/localStorage';
-import { useState } from 'react';
+import "./styles.css";
+import api from "../../../../../services/api";
+import { getLocalItem } from "../../../../../utils/localStorage";
+import { useState } from "react";
+import { transformSeconds } from "../../../../../utils/handleTime";
 
-export default function TabLine({ dados }) {
+export default function TabLine({
+  dados,
+  category,
+  categoryClasses,
+  setProgress,
+}) {
   const [checkboxStatus, setCheckboxStatus] = useState(
-    dados.status === 'checked' ? true : false
+    dados.status === "checked" ? true : false
   );
-  const token = getLocalItem('token');
+  const token = getLocalItem("token");
   const classId = dados.id;
+
+  //função para atualizar o progresso do usuário
+  const updateUserProgress = (doneUserClasses) => {
+    setProgress(
+      Math.round((doneUserClasses.length / categoryClasses.length) * 100)
+    );
+  };
 
   // função para marcar uma aula como feita
   const addDoneClass = async () => {
     try {
       const response = await api.post(
-        `/createUserClass/${classId}`,
+        `/createUserClass/${classId}?categoryId=${category.id}`,
         {},
         {
           headers: {
@@ -22,7 +35,7 @@ export default function TabLine({ dados }) {
           },
         }
       );
-      console.log(response);
+      updateUserProgress(response.data.userCategoryDoneClasses);
     } catch (error) {
       console.log(error);
     }
@@ -31,12 +44,15 @@ export default function TabLine({ dados }) {
   // função para desmarcar uma aula como feita
   const deleteDoneClass = async () => {
     try {
-      const response = await api.delete(`/deleteUserClass/${classId}`, {
-        headers: {
-          authorization: `Bearer ${token}`,
-        },
-      });
-      console.log(response);
+      const response = await api.delete(
+        `/deleteUserClass/${classId}?categoryId=${category.id}`,
+        {
+          headers: {
+            authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      updateUserProgress(response.data.userCategoryDoneClasses);
     } catch (error) {
       console.log(error);
     }
@@ -55,21 +71,57 @@ export default function TabLine({ dados }) {
   }
 
   return (
-    <div className="linha">
-      <div className="linha-titulo">{dados.title || '-'}</div>
-      <div className="linha-responsavel">{dados.author || '-'}</div>
-      <div className="linha-tipo">{dados.type || '-'}</div>
-      <div className="linha-duracao">{dados.duration || '-'}</div>
-      <div className="linha-conteudo">
-        {dados.link ? <a href={dados.link}>Icon</a> : '-'}
+    <>
+      {" "}
+      <div className="linha linha-desk">
+        <p className="linha-titulo">{dados.title || "-"}</p>
+        <p className="linha-responsavel">{dados.author || "-"}</p>
+        <p className="linha-tipo">{dados.type || "-"}</p>
+        <p className="linha-duracao">
+          {dados.duration ? transformSeconds(dados.duration) : "-"}
+        </p>
+        <p className="linha-conteudo">
+          {dados.link ? (
+            <a href={dados.link} target="_blank" rel="noreferrer">
+              <i className="bi bi-box-arrow-up-right"></i>
+            </a>
+          ) : (
+            "-"
+          )}
+        </p>
+        <p className="linha-status">
+          <input
+            type="checkbox"
+            defaultChecked={checkboxStatus}
+            onChange={handleChangeClassStatus}
+          />
+        </p>
       </div>
-      <div className="linha-status">
-        <input
-          type="checkbox"
-          defaultChecked={checkboxStatus}
-          onChange={handleChangeClassStatus}
-        />
+      <div className="linha linha-mobile">
+        <p className="linha-titulo">
+          {dados.title || "-"}
+          <br />
+          {dados.author || "-"} | {dados.type || "-"} | {dados.duration || "-"}
+        </p>
+        <div>
+          <p className="linha-conteudo">
+            {dados.link ? (
+              <a href={dados.link} target="_blank" rel="noreferrer">
+                <i className="bi bi-box-arrow-up-right"></i>
+              </a>
+            ) : (
+              "-"
+            )}
+          </p>
+          <p className="linha-status">
+            <input
+              type="checkbox"
+              defaultChecked={checkboxStatus}
+              onChange={handleChangeClassStatus}
+            />
+          </p>
+        </div>
       </div>
-    </div>
+    </>
   );
 }
