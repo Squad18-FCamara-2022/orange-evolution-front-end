@@ -26,6 +26,10 @@ function UserClasses() {
   const [userTrackDetails, setUserTrackDetails] = useState();
   // estado para as aulas da trilha do usuário
   const [userCategoryClasses, setUserCategoryClasses] = useState();
+  // estado pegar aulas da categoria (aba) que o user clicou
+  const [categoryClassesState, setCategoryClassesState] = useState();
+  //estado para a categoria atual da aba
+  const [currentCategory, setCurrentCategory] = useState();
 
   const [progress, setProgress] = useState();
 
@@ -40,6 +44,7 @@ function UserClasses() {
 
     getUserTrackDetails(trackId).then((data) => {
       // limpar as aulas do usuário
+      console.log(data);
       setUserCategoryClasses([]);
 
       setUserTrackDetails(data);
@@ -56,7 +61,14 @@ function UserClasses() {
       // pegar aulas da categoria (aba) que o user clicou
       const categoryClasses = data.trackDetails.categories[aba].classes;
 
+      //atualizar o state de aulas da categoria
+      setCategoryClassesState(categoryClasses);
+
+      //para atualizar o progresso do usuário/////////
+      // iniciar um array vazio para armazenar aulas já concluídas daquela categoria
       const doneClassesCategory = [];
+      setCurrentCategory(data.trackDetails.categories[aba]);
+
       categoryClasses.forEach((categoryClass) => {
         doneClasses.forEach((item) => {
           if (item.classId === categoryClass.id) {
@@ -64,9 +76,12 @@ function UserClasses() {
           }
         });
       });
+
+      // atualizar progresso do usuário
       setProgress(
         Math.round((doneClassesCategory.length / categoryClasses.length) * 100)
       );
+      //fim progresso do usuário/////////
 
       categoryClasses.forEach((classItem) => {
         const classStatus = setClassStatus(classItem.id, doneClasses)
@@ -110,7 +125,13 @@ function UserClasses() {
             <TrackTabsHeader />
             {isLoading === false ? (
               userCategoryClasses.map((dados, i) => (
-                <TabLine key={`linha-${i}`} dados={dados} />
+                <TabLine
+                  key={`linha-${i}`}
+                  dados={dados}
+                  category={currentCategory}
+                  categoryClasses={categoryClassesState}
+                  setProgress={setProgress}
+                />
               ))
             ) : (
               <SimpleBackdrop />

@@ -53,8 +53,9 @@ function HomeAdmin() {
           adminClassList.push(classListItem);
         });
       });
-      setCategories(categoryList);
     });
+    console.log(categoryList);
+    setCategories(categoryList);
     setClasses(adminClassList);
     setLocalClasses(adminClassList);
   };

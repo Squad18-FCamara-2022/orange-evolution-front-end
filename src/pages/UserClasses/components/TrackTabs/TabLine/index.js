@@ -3,18 +3,30 @@ import api from '../../../../../services/api';
 import { getLocalItem } from '../../../../../utils/localStorage';
 import { useState } from 'react';
 
-export default function TabLine({ dados }) {
+export default function TabLine({
+  dados,
+  category,
+  categoryClasses,
+  setProgress,
+}) {
   const [checkboxStatus, setCheckboxStatus] = useState(
     dados.status === 'checked' ? true : false
   );
   const token = getLocalItem('token');
   const classId = dados.id;
 
+  //função para atualizar o progresso do usuário
+  const updateUserProgress = (doneUserClasses) => {
+    setProgress(
+      Math.round((doneUserClasses.length / categoryClasses.length) * 100)
+    );
+  };
+
   // função para marcar uma aula como feita
   const addDoneClass = async () => {
     try {
-      await api.post(
-        `/createUserClass/${classId}`,
+      const response = await api.post(
+        `/createUserClass/${classId}?categoryId=${category.id}`,
         {},
         {
           headers: {
@@ -22,6 +34,7 @@ export default function TabLine({ dados }) {
           },
         }
       );
+      updateUserProgress(response.data.userCategoryDoneClasses);
     } catch (error) {
       console.log(error);
     }
@@ -30,11 +43,15 @@ export default function TabLine({ dados }) {
   // função para desmarcar uma aula como feita
   const deleteDoneClass = async () => {
     try {
-      await api.delete(`/deleteUserClass/${classId}`, {
-        headers: {
-          authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await api.delete(
+        `/deleteUserClass/${classId}?categoryId=${category.id}`,
+        {
+          headers: {
+            authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      updateUserProgress(response.data.userCategoryDoneClasses);
     } catch (error) {
       console.log(error);
     }
