@@ -65,16 +65,6 @@ function AddClassModal({ addClass, categories, modalState }) {
             className="input"
           />
           <p className="error">{errors.title?.message}</p>
-          <label className="label" htmlFor="type">
-            <h3>Tipo</h3>
-          </label>
-          <input
-            type="text"
-            name="type"
-            {...register('type')}
-            className="input"
-          />
-          <p className="error">{errors.type?.message}</p>
           <label className="label" htmlFor="author">
             <h3>Conteúdo por</h3>
           </label>
@@ -85,16 +75,32 @@ function AddClassModal({ addClass, categories, modalState }) {
             className="input"
           />
           <p className="error">{errors.author?.message}</p>
-          <label className="label" htmlFor="duration">
-            <h3>Duração (segundos)</h3>
-          </label>
-          <input
-            type="number"
-            name="duration"
-            {...register('duration')}
-            className="input"
-          />
-          <p className="error">{errors.duration?.message}</p>
+          <div className="input-divided">
+            <div className="input-type">
+              <label className="label" htmlFor="type">
+                <h3>Tipo</h3>
+              </label>
+              <input
+                type="text"
+                name="type"
+                {...register('type')}
+                className="input"
+              />
+              <p className="error">{errors.type?.message}</p>
+            </div>
+            <div className="input-duration">
+              <label className="label" htmlFor="duration">
+                <h3>Duração (segundos)</h3>
+              </label>
+              <input
+                type="number"
+                name="duration"
+                {...register('duration')}
+                className="input"
+              />
+              <p className="error">{errors.duration?.message}</p>
+            </div>
+          </div>
           <label className="label" htmlFor="link">
             <h3>Link</h3>
           </label>
@@ -118,9 +124,18 @@ function AddClassModal({ addClass, categories, modalState }) {
           />
           <p className="error">{errors.category?.message}</p>
           <p className="error">{warning}</p>
-          <button type="submit" className="submit-button">
-            Adicionar
-          </button>
+          <div className="add-class-buttons">
+            <button
+              type="button"
+              className="cancel-add"
+              onClick={() => modalState()}
+            >
+              Cancelar
+            </button>
+            <button type="submit" className="confirm-add">
+              Adicionar
+            </button>
+          </div>
         </form>
       </div>
     </div>

@@ -8,6 +8,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  text-align: center;
   gap: 3rem;
 }
 
@@ -43,8 +44,13 @@
     width: 100%;
     padding: 5rem 3rem;
   }
-  .add-content-button {
+  .confirm-delete,
+  .cancel-delete {
     padding: 1rem 2rem;
     font-size: 1.4rem;
+  }
+
+  .delete-class-modal-container i {
+    font-size: 10rem;
   }
 }

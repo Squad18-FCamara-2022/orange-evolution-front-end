@@ -30,12 +30,13 @@ export function AuthenticationProvider({ children }) {
     setAuthInfos(response);
   };
 
-  const signUp = async ({ name, email, password, confirmPassword }) => {
+  const signUp = async ({ name, email, password, confirmPassword, role }) => {
     const response = await api.post('/signup', {
       name,
       email,
       password,
       confirmPassword,
+      role,
     });
     setAuthInfos(response);
   };

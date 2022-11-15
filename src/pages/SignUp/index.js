@@ -7,6 +7,10 @@ import { useAuthContext } from '../../contexts/AuthenticationContext';
 import './styles.css';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
 
 const errorMessages = {
   name: 'Nome obrigatório',
@@ -31,6 +35,7 @@ const validationSchema = yup.object().shape({
   confirmPassword: yup
     .string()
     .oneOf([yup.ref('password'), null], errorMessages.confirmPassword),
+  role: yup.string(),
 });
 
 function SignUp() {
@@ -47,10 +52,10 @@ function SignUp() {
   const onSubmit = async (data, e) => {
     e.preventDefault();
 
-    const { name, email, password, confirmPassword } = data;
-
+    const { name, email, password, confirmPassword, role } = data;
+    console.log(role);
     try {
-      await signUp({ name, email, password, confirmPassword });
+      await signUp({ name, email, password, confirmPassword, role });
     } catch (error) {
       setWarning(error.message);
       console.log(error);
@@ -105,6 +110,15 @@ function SignUp() {
               className="input"
             />
             <p className="error">{errors.confirmPassword?.message}</p>
+            <div className="role-check">
+              <label htmlFor="role">
+                <h3>Cadastrar como: </h3>
+              </label>
+              <select name="role" id="role" {...register('role')}>
+                <option value="user">Estudante</option>
+                <option value="admin">Administrador</option>
+              </select>
+            </div>
             <p className="error">{warning}</p>
             <h3 className="login-link">
               Já possui uma conta? <Link to="/">FAÇA SEU LOGIN</Link>
