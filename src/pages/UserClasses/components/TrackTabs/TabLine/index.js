@@ -1,7 +1,8 @@
-import './styles.css';
-import api from '../../../../../services/api';
-import { getLocalItem } from '../../../../../utils/localStorage';
-import { useState } from 'react';
+import "./styles.css";
+import api from "../../../../../services/api";
+import { getLocalItem } from "../../../../../utils/localStorage";
+import { useState } from "react";
+import { transformSeconds } from "../../../../../utils/handleTime";
 
 export default function TabLine({
   dados,
@@ -10,9 +11,9 @@ export default function TabLine({
   setProgress,
 }) {
   const [checkboxStatus, setCheckboxStatus] = useState(
-    dados.status === 'checked' ? true : false
+    dados.status === "checked" ? true : false
   );
-  const token = getLocalItem('token');
+  const token = getLocalItem("token");
   const classId = dados.id;
 
   //função para atualizar o progresso do usuário
@@ -71,19 +72,21 @@ export default function TabLine({
 
   return (
     <>
-      {' '}
+      {" "}
       <div className="linha linha-desk">
-        <p className="linha-titulo">{dados.title || '-'}</p>
-        <p className="linha-responsavel">{dados.author || '-'}</p>
-        <p className="linha-tipo">{dados.type || '-'}</p>
-        <p className="linha-duracao">{dados.duration || '-'}</p>
+        <p className="linha-titulo">{dados.title || "-"}</p>
+        <p className="linha-responsavel">{dados.author || "-"}</p>
+        <p className="linha-tipo">{dados.type || "-"}</p>
+        <p className="linha-duracao">
+          {dados.duration ? transformSeconds(dados.duration) : "-"}
+        </p>
         <p className="linha-conteudo">
           {dados.link ? (
             <a href={dados.link} target="_blank" rel="noreferrer">
               <i className="bi bi-box-arrow-up-right"></i>
             </a>
           ) : (
-            '-'
+            "-"
           )}
         </p>
         <p className="linha-status">
@@ -96,9 +99,9 @@ export default function TabLine({
       </div>
       <div className="linha linha-mobile">
         <p className="linha-titulo">
-          {dados.title || '-'}
+          {dados.title || "-"}
           <br />
-          {dados.author || '-'} | {dados.type || '-'} | {dados.duration || '-'}
+          {dados.author || "-"} | {dados.type || "-"} | {dados.duration || "-"}
         </p>
         <div>
           <p className="linha-conteudo">
@@ -107,7 +110,7 @@ export default function TabLine({
                 <i className="bi bi-box-arrow-up-right"></i>
               </a>
             ) : (
-              '-'
+              "-"
             )}
           </p>
           <p className="linha-status">

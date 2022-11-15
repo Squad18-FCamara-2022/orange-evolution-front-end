@@ -1,16 +1,17 @@
-import { useEffect, useState } from 'react';
-import AddClassModal from './components/AddClassModal';
-import AdminList from './components/AdminList';
-import Footer from '../../components/Footer';
-import Header from '../../components/Header';
-import SearchInput from './components/SearchInput';
-import api from '../../services/api';
-import { getLocalItem } from '../../utils/localStorage';
-import SimpleBackdrop from '../../components/Backdrop';
-import './styles.css';
+import { useEffect, useState } from "react";
+import AddClassModal from "./components/AddClassModal";
+import AdminList from "./components/AdminList";
+import Footer from "../../components/Footer";
+import Header from "../../components/Header";
+import SearchInput from "./components/SearchInput";
+import api from "../../services/api";
+import { getLocalItem } from "../../utils/localStorage";
+import SimpleBackdrop from "../../components/Backdrop";
+import { transformTime } from "../../utils/handleTime";
+import "./styles.css";
 
 function HomeAdmin() {
-  const token = getLocalItem('token');
+  const token = getLocalItem("token");
   // eslint-disable-next-line
   const [classes, setClasses] = useState();
   const [categories, setCategories] = useState();
@@ -78,6 +79,7 @@ function HomeAdmin() {
 
   const addClass = async (classInfo) => {
     setIsloading(true);
+    console.log(classInfo);
     try {
       await api.post(
         `/createNewClassAdmin/${classInfo.category}`,
@@ -85,7 +87,7 @@ function HomeAdmin() {
           title: classInfo.title,
           contentType: classInfo.type,
           author: classInfo.author,
-          duration: classInfo.duration,
+          duration: transformTime(classInfo.duration),
           link: classInfo.link,
         },
         {

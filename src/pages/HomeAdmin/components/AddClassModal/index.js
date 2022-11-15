@@ -13,7 +13,10 @@ const validationSchema = yup.object().shape({
   title: yup.string().trim().required(errorMessages.required),
   type: yup.string().trim().required(errorMessages.required),
   author: yup.string().trim().required(errorMessages.required),
-  duration: yup.number(errorMessages.required).min(1, errorMessages.required),
+  duration: yup
+    .string(errorMessages.required)
+    .trim()
+    .matches(/^\d{2}:\d{2}:\d{2}$/, 'Digite o tempo no formato hh:mm:ss'),
   link: yup.string().trim().required(errorMessages.required),
   category: yup.string().trim().required(errorMessages.required),
 });
@@ -90,10 +93,10 @@ function AddClassModal({ addClass, categories, modalState }) {
             </div>
             <div className="input-duration">
               <label className="label" htmlFor="duration">
-                <h3>Duração (segundos)</h3>
+                <h3>Duração (hh:mm:ss)</h3>
               </label>
               <input
-                type="number"
+                type="text"
                 name="duration"
                 {...register('duration')}
                 className="input"
@@ -111,8 +114,6 @@ function AddClassModal({ addClass, categories, modalState }) {
             className="input"
           />
           <p className="error">{errors.link?.message}</p>
-
-          {/*implementar https://mui.com/material-ui/react-select/*/}
           <label className="label" htmlFor="category">
             <h3>Categoria (id)</h3>
           </label>
