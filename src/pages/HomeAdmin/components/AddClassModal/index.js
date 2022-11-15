@@ -3,7 +3,6 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import './styles.css';
-
 const errorMessages = {
   required: 'Campo obrigatório',
   category: '',
@@ -115,14 +114,23 @@ function AddClassModal({ addClass, categories, modalState }) {
           />
           <p className="error">{errors.link?.message}</p>
           <label className="label" htmlFor="category">
-            <h3>Categoria (id)</h3>
+            <h3>Categoria</h3>
           </label>
-          <input
+          {/* <input
             type="text"
             name="category"
             {...register('category')}
             className="input"
-          />
+          /> */}
+          <select id="category" name="category" {...register('category')}>
+            {categories.map((category) => {
+              return (
+                <option key={category.categoryId} value={category.categoryId}>
+                  {category.trackName} - {category.categoryName}
+                </option>
+              );
+            })}
+          </select>
           <p className="error">{errors.category?.message}</p>
           <p className="error">{warning}</p>
           <div className="add-class-buttons">
