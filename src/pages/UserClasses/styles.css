@@ -3,14 +3,16 @@
   width: 100vw;
 }
 
+.user-classes-main {
+  display: flex;
+  flex-direction: column;
+
+  padding: 9rem 8rem 3rem 9rem;
+}
+
 .user-classes-top {
-  padding: 9rem;
+  padding: 9rem 0;
 
   display: flex;
   justify-content: space-between;
-}
-
-.user-classes-content {
-  padding-left: 6rem;
-  padding-right: 6rem;
 }

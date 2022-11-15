@@ -1,13 +1,13 @@
-import "./styles.css";
-import api from "../../../services/api";
-import { getLocalItem } from "../../../utils/localStorage";
-import { useState } from "react";
+import './styles.css';
+import api from '../../../../../services/api';
+import { getLocalItem } from '../../../../../utils/localStorage';
+import { useState } from 'react';
 
 export default function TabLine({ dados }) {
   const [checkboxStatus, setCheckboxStatus] = useState(
-    dados.status == "checked" ? true : false
+    dados.status == 'checked' ? true : false
   );
-  const token = getLocalItem("token");
+  const token = getLocalItem('token');
   const classId = dados.id;
 
   // função para marcar uma aula como feita
@@ -56,12 +56,12 @@ export default function TabLine({ dados }) {
 
   return (
     <div className="linha">
-      <div className="linha-responsavel">{dados.title || "-"}</div>
-      <div className="linha-responsavel">{dados.author || "-"}</div>
-      <div className="linha-tipo">{dados.type || "-"}</div>
-      <div className="linha-duracao">{dados.duration || "-"}</div>
+      <div className="linha-responsavel">{dados.title || '-'}</div>
+      <div className="linha-responsavel">{dados.author || '-'}</div>
+      <div className="linha-tipo">{dados.type || '-'}</div>
+      <div className="linha-duracao">{dados.duration || '-'}</div>
       <div className="linha-conteudo">
-        {dados.link ? <a href={dados.link}>Icon</a> : "-"}
+        {dados.link ? <a href={dados.link}>Icon</a> : '-'}
       </div>
       <input
         type="checkbox"
