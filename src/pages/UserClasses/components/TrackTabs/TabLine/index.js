@@ -13,7 +13,7 @@ export default function TabLine({ dados }) {
   // função para marcar uma aula como feita
   const addDoneClass = async () => {
     try {
-      const response = await api.post(
+      await api.post(
         `/createUserClass/${classId}`,
         {},
         {
@@ -22,7 +22,6 @@ export default function TabLine({ dados }) {
           },
         }
       );
-      console.log(response);
     } catch (error) {
       console.log(error);
     }
@@ -31,12 +30,11 @@ export default function TabLine({ dados }) {
   // função para desmarcar uma aula como feita
   const deleteDoneClass = async () => {
     try {
-      const response = await api.delete(`/deleteUserClass/${classId}`, {
+      await api.delete(`/deleteUserClass/${classId}`, {
         headers: {
           authorization: `Bearer ${token}`,
         },
       });
-      console.log(response);
     } catch (error) {
       console.log(error);
     }

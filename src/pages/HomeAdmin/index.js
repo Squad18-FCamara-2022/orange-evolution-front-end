@@ -78,7 +78,7 @@ function HomeAdmin() {
   const addClass = async (classInfo) => {
     setIsloading(true);
     try {
-      const response = await api.post(
+      await api.post(
         `/createNewClassAdmin`,
         {
           title: classInfo.title,
@@ -95,8 +95,6 @@ function HomeAdmin() {
         }
       );
       getClassesAdmin();
-
-      console.log(response);
       setIsloading(false);
     } catch (error) {
       console.log(error);

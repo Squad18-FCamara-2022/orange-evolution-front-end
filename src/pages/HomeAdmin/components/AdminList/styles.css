@@ -70,6 +70,13 @@
     display: none;
   }
   .desktop-list {
-    display: block;
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .desktop-list span {
+    flex: 1;
+    text-align: end;
   }
 }

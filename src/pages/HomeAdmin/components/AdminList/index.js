@@ -4,7 +4,8 @@ import { useState } from 'react';
 
 function AdminList({ classInfo, deleteClass }) {
   // eslint-disable-next-line
-  const { trackName, categoryName, id, title, type, author } = classInfo;
+  const { trackName, categoryName, id, title, type, author, usersCount } =
+    classInfo;
 
   const [deleteClassModal, setDeleteClassModal] = useState(false);
   const handleModalDeleteClass = () => {
@@ -17,6 +18,7 @@ function AdminList({ classInfo, deleteClass }) {
         <p className="desktop-list">
           Trilha: {trackName} | Categoria: {categoryName} | Tipo: {type} | Por:{' '}
           {author} | {title}
+          <span>Usuários concluíntes: {usersCount} </span>
         </p>
         <p className="mobile-list">
           {trackName} | {categoryName} <br /> {type} | {author} | {title}

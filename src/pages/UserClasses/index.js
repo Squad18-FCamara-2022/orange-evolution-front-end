@@ -26,6 +26,9 @@ function UserClasses() {
   const [userTrackDetails, setUserTrackDetails] = useState();
   // estado para as aulas da trilha do usuário
   const [userCategoryClasses, setUserCategoryClasses] = useState();
+
+  const [progress, setProgress] = useState();
+
   // função para definir o estado da aula
   const setClassStatus = (classId, doneClasses) => {
     return doneClasses.find((item) => item.classId === classId);
@@ -52,6 +55,18 @@ function UserClasses() {
 
       // pegar aulas da categoria (aba) que o user clicou
       const categoryClasses = data.trackDetails.categories[aba].classes;
+
+      const doneClassesCategory = [];
+      categoryClasses.forEach((categoryClass) => {
+        doneClasses.forEach((item) => {
+          if (item.classId === categoryClass.id) {
+            doneClassesCategory.push(item);
+          }
+        });
+      });
+      setProgress(
+        Math.round((doneClassesCategory.length / categoryClasses.length) * 100)
+      );
 
       categoryClasses.forEach((classItem) => {
         const classStatus = setClassStatus(classItem.id, doneClasses)
@@ -88,7 +103,7 @@ function UserClasses() {
         <div className="user-classes-main">
           <div className="user-classes-top">
             <h1>{trackName}</h1>
-            <UserProgress value={50} />
+            <UserProgress value={progress} />
           </div>
           <div className="user-classes-content">
             <TrackTabs aba={aba} categories={categories} setAba={setAba} />
