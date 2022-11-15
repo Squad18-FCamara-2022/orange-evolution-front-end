@@ -79,14 +79,13 @@ function HomeAdmin() {
     setIsloading(true);
     try {
       await api.post(
-        `/createNewClassAdmin`,
+        `/createNewClassAdmin/${classInfo.category}`,
         {
           title: classInfo.title,
           contentType: classInfo.type,
           author: classInfo.author,
           duration: classInfo.duration,
           link: classInfo.link,
-          categoryId: classInfo.category,
         },
         {
           headers: {
