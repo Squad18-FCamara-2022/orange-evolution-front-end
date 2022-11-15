@@ -1,7 +1,15 @@
 import './styles.css';
+import DeleteClassModal from '../DeleteClassModal';
+import { useState } from 'react';
 
 function AdminList({ classInfo, deleteClass }) {
+  // eslint-disable-next-line
   const { trackName, categoryName, id, title, type, author } = classInfo;
+
+  const [deleteClassModal, setDeleteClassModal] = useState(false);
+  const handleModalDeleteClass = () => {
+    setDeleteClassModal(!deleteClassModal);
+  };
 
   return (
     <div className="admin-class-container">
@@ -17,9 +25,19 @@ function AdminList({ classInfo, deleteClass }) {
       <button className="admin-edit-button">
         <i className="bi bi-pencil-square"></i>
       </button>
-      <button className="admin-delete-button" onClick={() => deleteClass(id)}>
+      <button
+        className="admin-delete-button"
+        onClick={() => handleModalDeleteClass()}
+      >
         <i className="bi bi-trash"></i>
       </button>
+      {deleteClassModal && (
+        <DeleteClassModal
+          deleteClass={deleteClass}
+          modalState={handleModalDeleteClass}
+          classId={id}
+        />
+      )}
     </div>
   );
 }
