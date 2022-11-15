@@ -4,7 +4,7 @@ function DeleteClassModal({ deleteClass, modalState, classId }) {
   return (
     <div className="modal-background">
       <div className="delete-class-modal-container">
-        <i class="bi bi-exclamation-triangle"></i>
+        <i className="bi bi-exclamation-triangle"></i>
         <h2>Tem certeza que deseja excluir esta aula?</h2>
         <div className="delete-class-buttons">
           <button

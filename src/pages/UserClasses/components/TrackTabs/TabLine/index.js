@@ -55,21 +55,55 @@ export default function TabLine({ dados }) {
   }
 
   return (
-    <div className="linha">
-      <div className="linha-titulo">{dados.title || '-'}</div>
-      <div className="linha-responsavel">{dados.author || '-'}</div>
-      <div className="linha-tipo">{dados.type || '-'}</div>
-      <div className="linha-duracao">{dados.duration || '-'}</div>
-      <div className="linha-conteudo">
-        {dados.link ? <a href={dados.link}>Icon</a> : '-'}
+    <>
+      {' '}
+      <div className="linha linha-desk">
+        <p className="linha-titulo">{dados.title || '-'}</p>
+        <p className="linha-responsavel">{dados.author || '-'}</p>
+        <p className="linha-tipo">{dados.type || '-'}</p>
+        <p className="linha-duracao">{dados.duration || '-'}</p>
+        <p className="linha-conteudo">
+          {dados.link ? (
+            <a href={dados.link} target="_blank" rel="noreferrer">
+              <i className="bi bi-box-arrow-up-right"></i>
+            </a>
+          ) : (
+            '-'
+          )}
+        </p>
+        <p className="linha-status">
+          <input
+            type="checkbox"
+            defaultChecked={checkboxStatus}
+            onChange={handleChangeClassStatus}
+          />
+        </p>
       </div>
-      <div className="linha-status">
-        <input
-          type="checkbox"
-          defaultChecked={checkboxStatus}
-          onChange={handleChangeClassStatus}
-        />
+      <div className="linha linha-mobile">
+        <p className="linha-titulo">
+          {dados.title || '-'}
+          <br />
+          {dados.author || '-'} | {dados.type || '-'} | {dados.duration || '-'}
+        </p>
+        <div>
+          <p className="linha-conteudo">
+            {dados.link ? (
+              <a href={dados.link} target="_blank" rel="noreferrer">
+                <i className="bi bi-box-arrow-up-right"></i>
+              </a>
+            ) : (
+              '-'
+            )}
+          </p>
+          <p className="linha-status">
+            <input
+              type="checkbox"
+              defaultChecked={checkboxStatus}
+              onChange={handleChangeClassStatus}
+            />
+          </p>
+        </div>
       </div>
-    </div>
+    </>
   );
 }

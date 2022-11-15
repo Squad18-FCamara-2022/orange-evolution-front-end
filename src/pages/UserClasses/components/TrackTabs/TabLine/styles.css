@@ -2,6 +2,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 1rem;
   background-color: #262626;
   padding: 20px;
   border-radius: 24px;
@@ -10,6 +11,7 @@
 
 .linha-titulo {
   flex: 2;
+  line-height: 2rem;
 }
 
 .linha-responsavel {
@@ -32,7 +34,16 @@
   text-align: center;
 }
 
+.linha-conteudo i {
+  font-size: 2rem;
+}
+
 .linha-status {
   flex: 1;
   text-align: center;
+}
+
+.linha-status input {
+  width: 1.8rem;
+  height: 1.8rem;
 }
