@@ -1,70 +1,77 @@
-# Getting Started with Create React App
+# Hackaton FCamara - Season 4 - Squad18
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 💻 Sobre o projeto
 
-## Available Scripts
+A **Orange Evolution** é uma plataforma criada com o objetivo de disponibilizar trilhas de conhecimento gratuitas na área de tecnologia. Nela, os usuários conseguem acessar diversos conteúdos de forma prática e orientada, que servem como base para dar início às suas carreiras. Os administradores conseguem atualizar em tempo real as trilhas disponibilizadas e acompanhar a evolução dos estudantes diariamente.
 
-In the project directory, you can run:
+Projeto desenvolvido pelo Squad 18 durante o Hackaton do Programa de Formação - Season 4 oferecido pela FCamara.
 
-### `npm start`
+## 💡 Autores
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- [Amanda Pazettti](https://www.linkedin.com/in/amanda-pazetti-peres-ramos-2b397b143/)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- [Lucas Everest](https://www.linkedin.com/in/lucas-everest-844b4b1a7/)
 
-### `npm test`
+- [Paula Dias](https://www.linkedin.com/in/pfatimadias/)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- [Renata Ali](https://www.linkedin.com/in/renata-ali-9b57a6b5/)
 
-### `npm run build`
+## Links úteis
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Aplicação em Produção:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+https://orangejuice-evolution.netlify.app/
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Repositório do backend:
 
-### `npm run eject`
+https://github.com/Squad18-FCamara-2022/orange-evolution-back-end
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## 🛠️ Tecnologias utilizadas
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Frontend
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- ReactJS
+- JavaScript
+- Axios
+- React-hook-form
+- Yup
+- MUI
+- Netlify
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## 📌 Funcionalidades
 
-## Learn More
+- Atualização de conteúdo em tempo real para o usuário.
+- Autonomia e segurança por parte do administrador.
+- Acesso direto à comunidade da Orange Juice no Discord.
+- Usuário consegue visualizar seu progresso individual de forma simples na tela.
+- Administrador consegue visualizar quantos usuários concluíram aquele conteúdo.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Futuras melhorias
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Os administradores da plataforma irão conseguir visualizar:
 
-### Code Splitting
+- A quantidade de pessoas ativas na plataforma.
+- Os progressos dos inscritos.
+- As avaliações realizadas pelos usuários após as aulas.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Também será possível:
 
-### Analyzing the Bundle Size
+- Inserir novas trilhas de conhecimento;
+- Edição do perfil de usuário;
+- Edição de conteúdos já criados;
+- Adição de novas trilhas e novas categorias.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## Aprendizados
 
-### Making a Progressive Web App
+Desde o início foi enriquecedor para todos nós, pois o Hackathon da FCamara nos ensinou:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+- A trabalhar com ferramentas novas, algumas delas nunca tínhamos trabalhados antes e aprendemos no decorrer do projeto.
+- A trabalhar com culturas diferentes, absorvendo conhecimentos, experiências e informações.
+- A real importância do trabalho em grupo na prática, e o quanto isso agrega para a equipe e para a construção do projeto.
+- Como o convívio com outras pessoas pode deixar o trabalho mais dinâmico e saudável.
+- Os papéis e responsabilidades importantes que iremos enfrentar em uma empresa.
+- Aprendemos a estabelecer metas que deram mais fluidez ao projeto.
 
-### Advanced Configuration
+E além de tudo isso, promoveu a união, empatia, senso de grupo e o respeito às diferenças.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Feito com ❤️ por [Squad18](squad18hackathonfcamara@gmail.com)

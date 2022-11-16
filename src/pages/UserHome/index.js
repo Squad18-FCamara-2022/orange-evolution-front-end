@@ -37,7 +37,7 @@ function Home() {
           <Link
             to="/trilhas"
             state={{
-              trackId: 'cla93f9p70004vw8nbp1vev5m',
+              trackId: 'claiwb9xx000evwydumgnebn9',
               trackName: 'UX/UI Designer',
             }}
           >
@@ -46,7 +46,7 @@ function Home() {
           <Link
             to="/trilhas"
             state={{
-              trackId: 'cla93d3yi0000vw8nti3frpr0',
+              trackId: 'claiw600w0000vwyd6wsys85u',
               trackName: 'Desenvolvimento Full Stack',
             }}
           >
@@ -56,7 +56,7 @@ function Home() {
           <Link
             to="/trilhas"
             state={{
-              trackId: 'cla93egpn0002vw8np291twvw',
+              trackId: 'claiw90pg0007vwydsl2oje5u',
               trackName: 'Quality Assurance (QA)',
             }}
           >
