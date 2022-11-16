@@ -113,4 +113,13 @@
   .cancel-add {
     font-size: 1.4rem;
   }
+
+  .input-divided {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .input-divided .input {
+    width: 100%;
+  }
 }

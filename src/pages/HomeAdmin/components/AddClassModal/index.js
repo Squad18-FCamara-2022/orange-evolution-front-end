@@ -116,12 +116,6 @@ function AddClassModal({ addClass, categories, modalState }) {
           <label className="label" htmlFor="category">
             <h3>Categoria</h3>
           </label>
-          {/* <input
-            type="text"
-            name="category"
-            {...register('category')}
-            className="input"
-          /> */}
           <select id="category" name="category" {...register('category')}>
             {categories.map((category) => {
               return (
